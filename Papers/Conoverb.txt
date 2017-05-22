@@ -1,0 +1,20 @@
+1. Data 
+
+Para obtener la data usan 2 hashtags para cada posición política que se busca identificar (#p2 y #tcot). Se recolectaron tweets con dichos hashtags, y usando el coeficiente de Jaccard con un treshold de 0.005 para obtener otros hahstags para obtener tweets, descalificaron algunos de estos hashtags por ser polemicos. Se usaron 2 anotadores con 3 opciones, derecha izquierda o ambigua, en este punto no usaron ningun tipo de metrica para los resultados, se podria usar el coeficiente Kappa para ver que tan parecido dieron los resultados de los anotadores. Cabe destacar que la clasificacion fue realizada sobre 1000 usuarios seleccionados de manera aleatoria.
+
+2. Clasificacion
+
+Usaron 4 tipos de clasificadores, y como métrica usan solo el accuracy. Yo opino que se pueden agregar otras métricas para ver los resultados como un total. 
+
+El primero se basa en el texto del tweet con un SVM basado en una matriz de unigramas donde el valor es creado con el algoritmo de TF-IDF.
+
+El segundo es de la misma manera solo que la matriz viene dado por los hashtags. Tambien se peude realizar usando cuantas veces un usuario uso cierto hashtag.
+
+El tercero trata de hacer uso de la relacion entre los retweets de los usuarios. No estoy seguro de como hace la inicializacion pero se va propagando viendo en cada nodo cual fue el mas compartido por sus vecinos.
+
+Igual que el tercero pero se uso tambien la informacion de los hashtags para hacer la relacion.
+
+3. Resultados
+
+Usando solo el accuracy los mejores resultados fueron el 4to y el 3ro con un porcentaje practicamente igual, despues el 2do y por ultimo el 1ro.
+
