@@ -1,0 +1,45 @@
+1. Datos
+
+250.000 tweets de seis semanas antes de las elecciones del congreso de estados unidos en el 2010, estos tweets 
+provenìan de dos redes de comunicación en twitter: retweet y mention, y provenian de más de 45.000 usuarios.
+
+Los Tweets fueron obtenidos mediante el analisis de dos hashtags en particular #p2 y #tcot, luego se calcularon 
+aquellos que resultaban incidentes al mismo tiempo que estos en al menos un tweet y se clasificaron los resultados 
+utilizando el coeficiente de Jaccard y se identificaron 66 hastags unicos.
+
+De los tweets que contenían estos hashtags se construyeron dos redes, una basada en los retweets y la otra 
+en las menciones.
+
+
+3. Análisis con Clusters
+
+Se realizo la detección de comunidades mediante metodos de propagación de etiquetas para dos comunidades, asignando 
+una membresía arbitraria incial del clúster a cada nodo e ir actualizando en cada iteración según sea compartida por 
+sus nodos vecinos, lo genero dos grafos con la data según los cuales se agrupo la misma.
+
+Para conocer la importancia real de los hashtags en la discusión política se asocio cada usuario con un vector que 
+contiene todos los hashtags de sus tweets ponderados por frecuencia, así se calcularon las similitudes entre cada 
+par de ususarios de un mismo cluster y de cluster diferentes.
+
+Otra clasificación se llevó a cabo haciendo un estudio social a mano donde se clasificó el contenido de los tweets 
+en cada una de las orientaciones politicas con ayuda de un experto en la materia, luego esta clasificación se 
+comparo con la clasificación esperada segun el grafo, mediante el uso del estadístico Cohen's Kappa.
+
+
+4. Conlusiones
+
+Los dos tipos de interacción producen dos topologías de red muy distintas, donde la red de retweet resulta muy 
+polarizada y la de mentions no.
+
+Así mismo los resultados muetsran evidencia de que es mucho más probable que los usuarios compartan informacion 
+a través de retweets sobre opiniones politicas similares a las propias, mientras que por las menciones si es 
+probable una interacción con usuarios de ideologías políticas opuestas.
+
+Sin embargo la segregación política persiste a pesar de la interacción entre usuarios de idiologías cruzadas, 
+por lo que el discurso político en twitter es altamente partidista.
+
+
+
+
+
+
