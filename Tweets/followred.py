@@ -68,9 +68,12 @@ for user in ids:
         user_b_followers = api.followers_ids(user)
         print len(user_b_followers)
         for user2 in ids:
-            user_a = api.get_user(screen_name = user2)
-            is_following = user_a.id in user_b_followers    
-            print is_following
+            try:
+                user_a = api.get_user(screen_name = user2)
+                is_following = user_a.id in user_b_followers    
+                print is_following
+            except Exception, e:
+                print ("user2 ", user2)
     except Exception, e:
         print(user)
 
