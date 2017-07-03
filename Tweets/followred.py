@@ -53,7 +53,7 @@ class TweetListener(StreamListener):
         print status
 
 #search
-api = tweepy.API(auth,wait_on_rate_limit=True)
+api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
@@ -65,15 +65,18 @@ for user in ids:
 #     #print user
     try:
         #desc.append(info.description)
-        user_b_followers = api.followers_ids(user)
-        print len(user_b_followers)
-        for user2 in ids:
-            try:
-                user_a = api.get_user(screen_name = user2)
-                is_following = user_a.id in user_b_followers    
-                print is_following
-            except Exception, e:
-                print ("user2 ", user2)
+        user_b_followers = tweepy.Cursor(api.followers_ids, id = user)
+        i = 1
+        for page in user_b_followers.pages():
+            print i
+            i = i + 1
+            for user2 in ids:
+                try:
+                    user_a = api.get_user(screen_name = user2)
+                    is_following = user_a.id in page    
+                    print is_following
+                except Exception, e:
+                    print ("user2 ", user2)
     except Exception, e:
         print(user)
 
