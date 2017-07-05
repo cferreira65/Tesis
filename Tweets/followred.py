@@ -61,6 +61,16 @@ out = open("follow.txt", 'w')
 
 db = set(ids)
 
+i = 1
+for user in ids:
+    try:
+        user_a = api.get_user(screen_name = user)
+        desc.append(user_a)
+        print i
+        i = i + 1
+    except Exception, e:
+        print(user)
+
 for user in ids:
 #     #print user
     try:
@@ -70,9 +80,8 @@ for user in ids:
         for page in user_b_followers.pages():
             print i
             i = i + 1
-            for user2 in ids:
+            for user2 in desc:
                 try:
-                    user_a = api.get_user(screen_name = user2)
                     is_following = user_a.id in page    
                     print is_following
                 except Exception, e:
