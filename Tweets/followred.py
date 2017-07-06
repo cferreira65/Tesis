@@ -9,7 +9,7 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 import botometer
-
+import networkx as nx
 
 df1 = pd.read_csv('sosvenezuela_17-01.csv', sep= ';')
 df2 = pd.read_csv('sosvenezuela_17-02.csv', sep= ';')
@@ -59,13 +59,14 @@ desc = []
 
 out = open("follow.txt", 'w')
 
-db = set(ids)
+g=nx.DiGraph()
 
 i = 1
 for user in ids:
     try:
         user_a = api.get_user(screen_name = user)
         desc.append(user_a)
+        g.add_node(user)
         print i
         i = i + 1
     except Exception, e:
@@ -83,10 +84,14 @@ for user in ids:
             for user2 in desc:
                 try:
                     is_following = user_a.id in page    
-                    print is_following
+                    if is_following:
+                        g.add_edge(user2,user)
                 except Exception, e:
                     print ("user2 ", user2)
+        print g.edges()
+        print g.nodes()
     except Exception, e:
         print(user)
+nx.write_graphml(g,'follow.xml')
 
 out.close()
