@@ -11,11 +11,11 @@ from tweepy import OAuthHandler
 import botometer
 import networkx as nx
 
-df1 = pd.read_csv('sosvenezuela_17-01.csv', sep= ';')
-df2 = pd.read_csv('sosvenezuela_17-02.csv', sep= ';')
-df3 = pd.read_csv('sosvenezuela_17-03.csv', sep= ';')
-df4 = pd.read_csv('sosvenezuela_17-04.csv', sep= ';')
-df5 = pd.read_csv('sosvenezuela_17-05.csv', sep= ';')
+df1 = pd.read_csv('Tweets/sosvenezuela_17-01.csv', sep= ';')
+df2 = pd.read_csv('Tweets/sosvenezuela_17-02.csv', sep= ';')
+df3 = pd.read_csv('Tweets/sosvenezuela_17-03.csv', sep= ';')
+df4 = pd.read_csv('Tweets/sosvenezuela_17-04.csv', sep= ';')
+df5 = pd.read_csv('Tweets/sosvenezuela_17-05.csv', sep= ';')
 
 ids = df1.username #you can also use df['column_name']
 # ids2 = df2.username
@@ -83,9 +83,9 @@ for user in ids:
             i = i + 1
             for user2 in desc:
                 try:
-                    is_following = user_a.id in page    
+                    is_following = user2.id in page    
                     if is_following:
-                        g.add_edge(user2,user)
+                        g.add_edge(user2.screen_name,user)
                 except Exception, e:
                     print ("user2 ", user2)
         print g.edges()
