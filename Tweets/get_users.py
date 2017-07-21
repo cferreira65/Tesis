@@ -11,17 +11,17 @@ from tweepy import OAuthHandler
 import botometer
 
 
-df1 = pd.read_csv('sosvenezuela_17-01.csv', sep= ';')
-df2 = pd.read_csv('sosvenezuela_17-02.csv', sep= ';')
-df3 = pd.read_csv('sosvenezuela_17-03.csv', sep= ';')
-df4 = pd.read_csv('sosvenezuela_17-04.csv', sep= ';')
-df5 = pd.read_csv('sosvenezuela_17-05.csv', sep= ';')
-df6 = pd.read_csv('ChavezVive15-04-17.csv', sep= ';')
-df7 = pd.read_csv('ChavezVive15-08-13.csv', sep= ';')
-df8 = pd.read_csv('ChavezVive15-08-14.csv', sep= ';')
-df9 = pd.read_csv('ChavezVive15-08-15.csv', sep= ';')
-df10 = pd.read_csv('ChavezVive15-08-16.csv', sep= ';')
-df11 = pd.read_csv('selected_users.csv', sep =';')
+df1 = pd.read_csv('Tweets/sosvenezuela_17-01.csv', sep= ';')
+df2 = pd.read_csv('Tweets/sosvenezuela_17-02.csv', sep= ';')
+df3 = pd.read_csv('Tweets/sosvenezuela_17-03.csv', sep= ';')
+df4 = pd.read_csv('Tweets/sosvenezuela_17-04.csv', sep= ';')
+df5 = pd.read_csv('Tweets/sosvenezuela_17-05.csv', sep= ';')
+df6 = pd.read_csv('Tweets/ChavezVive15-04-17.csv', sep= ';')
+df7 = pd.read_csv('Tweets/ChavezVive15-08-13.csv', sep= ';')
+df8 = pd.read_csv('Tweets/ChavezVive15-08-14.csv', sep= ';')
+df9 = pd.read_csv('Tweets/ChavezVive15-08-15.csv', sep= ';')
+df10 = pd.read_csv('Tweets/ChavezVive15-08-16.csv', sep= ';')
+df11 = pd.read_csv('Tweets/selected_users.csv', sep =';')
 
 ids = df1.username #you can also use df['column_name']
 ids2 = df2.username
@@ -99,7 +99,7 @@ for user in ids:
         print(result['scores']['universal'])
 
         if result['scores']['universal'] < 0.5:
-            out_bots.write(user + "\"\n"
+            out_bots.write(user + "\"\n")
             #inf = info.description
             
             # print((tweet[0].truncated))
