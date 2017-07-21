@@ -47,6 +47,7 @@ ids = ids.append(ids10)
 ids = ids.append(ids11)
 
 ids = pd.Series(ids.unique())
+print(ids.size)
 #ids = ids.sample(50)
 
 CONSUMER_KEY = '5Rcxy0B6hTefj4WfI83Ov4rGn'
@@ -74,8 +75,8 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-#out = open("sosvenezuela_bios.csv", 'w')
-out_bots = open("no_bots.csv", 'w')
+out = open("sosvenezuela_bios.csv", 'w')
+out_bots = open("bots.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -89,6 +90,7 @@ twitter_app_auth = {
 bom = botometer.Botometer(mashape_key=mashape_key, **twitter_app_auth)
 
 
+
 for user in ids:
     #print user
     try:
@@ -98,8 +100,7 @@ for user in ids:
         result = bom.check_account(user)
         print(result['scores']['universal'])
 
-        if result['scores']['universal'] < 0.5:
-            out_bots.write(user + "\"\n"
+        if result['scores']['universal'] > 0.5:
             #inf = info.description
             
             # print((tweet[0].truncated))
@@ -115,12 +116,12 @@ for user in ids:
             for t in tweet:
                 inf = t.text
                 out.write(str(i) + ",\"" + inf.rstrip("\n").encode('utf-8') + "\"\n")
-                i += 1
+                i += 1'''
 
         else:
             #inf = info.description
             out_bots.write(user + "\"\n")
-            i = 1
+            '''i = 1
             for t in tweet:
                 inf = t.text
                 out_bots.write(str(i) + ",\"" + inf.rstrip("\n").encode('utf-8') + "\"\n")
@@ -133,7 +134,7 @@ for user in ids:
 '''dataf = pd.DataFrame(np.column_stack([ids_s, desc]), 
                                columns=['username', 'description'])
 dataf.to_csv("out.csv", sep=';')'''
-#out.close()
+out.close()
 out_bots.close()
 
 # for i in ids:
