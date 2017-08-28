@@ -10,7 +10,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 import botometer
 
-
+# All the files containing the tweets
 df1 = pd.read_csv('Tweets/sosvenezuela_17-01.csv', sep= ';')
 df2 = pd.read_csv('Tweets/sosvenezuela_17-02.csv', sep= ';')
 df3 = pd.read_csv('Tweets/sosvenezuela_17-03.csv', sep= ';')
@@ -23,7 +23,8 @@ df9 = pd.read_csv('Tweets/ChavezVive15-08-15.csv', sep= ';')
 df10 = pd.read_csv('Tweets/ChavezVive15-08-16.csv', sep= ';')
 df11 = pd.read_csv('Tweets/selected_users.csv', sep =';')
 
-ids = df1.username #you can also use df['column_name']
+# Getting the username of the tweets
+ids = df1.username 
 ids2 = df2.username
 ids3 = df3.username
 ids4 = df4.username
@@ -44,11 +45,11 @@ ids = ids.append(ids7)
 ids = ids.append(ids8)
 ids = ids.append(ids9)
 ids = ids.append(ids10)
-ids = ids.append(ids11)
+#ids = ids.append(ids11)
 
 ids = pd.Series(ids.unique())
 print(ids.size)
-#ids = ids.sample(50)
+
 
 CONSUMER_KEY = '5Rcxy0B6hTefj4WfI83Ov4rGn'
 CONSUMER_SECRET = 'IROZKaE6Osnt7FlvVmZlWLEU9V1KT7TyZpda7CgrJKG5Qmtre5'
@@ -75,8 +76,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("sosvenezuela_bios.csv", 'w')
-out_bots = open("bots.csv", 'w')
+out = open("no_bots.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -89,54 +89,26 @@ twitter_app_auth = {
 
 bom = botometer.Botometer(mashape_key=mashape_key, **twitter_app_auth)
 
+out.write("username\n")
 
+for user in ids11:
+    out.write(user + "\n")
 
-for user in ids:
-    #print user
+i = 0
+for user in ids[0:1000]:
+    i = i + 1
     try:
-        info = api.get_user(screen_name = user)
-        #desc.append(info.description)
-        tweet = api.user_timeline(screen_name = user)
         result = bom.check_account(user)
-        print(result['scores']['universal'])
+        #print(result['scores']['universal'])
+        print(i)
 
         if result['scores']['universal'] < 0.5:
-            out_bots.write(user + "\"\n")
-            #inf = info.description
-            
-            # print((tweet[0].truncated))
-            # print((tweet[0].text)) 
-            # print((tweet[0].retweet_count.numerator))
-            # print((tweet[0].retweet_count.denominator))
-
-            # print(dir(tweet[0]))
-            # print(dir(tweet[0].retweet.im_func.func_name))
-
-            '''out.write(user + ",\"" + inf.rstrip("\n").encode('utf-8') + "\"\n")
-            i = 1
-            for t in tweet:
-                inf = t.text
-                out.write(str(i) + ",\"" + inf.rstrip("\n").encode('utf-8') + "\"\n")
-                i += 1
-
-        else:
-            #inf = info.description
-            
-            i = 1
-            for t in tweet:
-                inf = t.text
-                out_bots.write(str(i) + ",\"" + inf.rstrip("\n").encode('utf-8') + "\"\n")
-                i += 1'''
+            out.write(user + "\n")
 
     except Exception, e:
         print(user)
     
-
-'''dataf = pd.DataFrame(np.column_stack([ids_s, desc]), 
-                               columns=['username', 'description'])
-dataf.to_csv("out.csv", sep=';')'''
 out.close()
-out_bots.close()
 
 # for i in ids:
 #     ids_s.append(i.partition(' ')[0])
