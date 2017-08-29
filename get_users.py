@@ -114,7 +114,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("no_bots.csv", 'w')
+out = open("no_bots_1-1000.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
