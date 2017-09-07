@@ -114,7 +114,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("no_bots_2000-3000.csv", 'w')
+out = open("no_bots_7000-8500.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -129,11 +129,11 @@ bom = botometer.Botometer(mashape_key=mashape_key, **twitter_app_auth)
 
 out.write("username\n")
 
-for user in ids11:
-    out.write(user + "\n")
+# for user in ids11:
+#     out.write(user + "\n")
 
 i = 0
-for user in ids[2000:3000]:
+for user in ids[7000:8500]:
     i = i + 1
     try:
         result = bom.check_account(user)
