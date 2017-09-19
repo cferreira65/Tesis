@@ -114,7 +114,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("no_bots_8500-10000.csv", 'w')
+out = open("no_bots_14200-15335.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -133,7 +133,7 @@ out.write("username\n")
 #     out.write(user + "\n")
 
 i = 0
-for user in ids[8500:10000]:
+for user in ids[14200:15335]:
     i = i + 1
     try:
         result = bom.check_account(user)
