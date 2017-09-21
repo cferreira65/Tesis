@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <graph edgedefault="directed">
+    <node id="UrijiJami" />
+    <node id="LuisCarlos" />
+    <node id="Dayana_R23" />
+    <node id="urijijami" />
+    <node id="gahing" />
+    <node id="dayana_r23" />
+    <edge source="UrijiJami" target="dayana_r23" />
+    <edge source="UrijiJami" target="LuisCarlos" />
+    <edge source="Dayana_R23" target="urijijami" />
+    <edge source="Dayana_R23" target="LuisCarlos" />
+  </graph>
+</graphml>
