@@ -1,6 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
   <graph edgedefault="directed">
-    <node id="gahing" />
+    <node id="LeslieRodrigs" />
+    <node id="elpibe1086" />
+    <node id="pedroavp" />
+    <node id="paul_baptista" />
+    <edge source="LeslieRodrigs" target="elpibe1086" />
+    <edge source="elpibe1086" target="LeslieRodrigs" />
   </graph>
 </graphml>
