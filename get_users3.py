@@ -81,7 +81,7 @@ ids = ids.append(ids16)
 ids = ids.append(ids17)
 ids = ids.append(ids18)
 ids = ids.append(ids19)
-ids = ids.append(ids20)
+#ids = ids.append(ids20)
 
 #ids = ids.append(ids11)
 
@@ -114,7 +114,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("no_bots_13000-14200.csv", 'w')
+out = open("no_bots_16835-18335.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -133,7 +133,7 @@ out.write("username\n")
 #     out.write(user + "\n")
 
 i = 0
-for user in ids[13000:14200]:
+for user in ids[16835:18335]:
     i = i + 1
     try:
         result = bom.check_account(user)

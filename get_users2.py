@@ -60,7 +60,7 @@ ids16 = df16.username
 ids17 = df17.username
 ids18 = df18.username
 ids19 = df19.username
-ids20 = df20.username
+#ids20 = df20.username
 
 
 ids = ids.append(ids2)
@@ -81,7 +81,7 @@ ids = ids.append(ids16)
 ids = ids.append(ids17)
 ids = ids.append(ids18)
 ids = ids.append(ids19)
-ids = ids.append(ids20)
+#ids = ids.append(ids20)
 
 #ids = ids.append(ids11)
 
@@ -113,7 +113,7 @@ api = tweepy.API(auth)
 twitterStream = Stream(auth,TweetListener())
 desc = []
 
-out = open("no_bots_1000-2000.csv", 'w')
+out = open("no_bots_18335-19804.csv", 'w')
 
 
 mashape_key = "iykKYyk7XTmshsUERrKagp0XxruZp1mWfoEjsnS24G5TOEopR1"
@@ -128,11 +128,11 @@ bom = botometer.Botometer(mashape_key=mashape_key, **twitter_app_auth)
 
 out.write("username\n")
 
-for user in ids11:
-    out.write(user + "\n")
+#for user in ids11:
+#    out.write(user + "\n")
 
 i = 0
-for user in ids[1000:2000]:
+for user in ids[18335:19804]:
     i = i + 1
     try:
         result = bom.check_account(user)

@@ -81,7 +81,7 @@ ids = ids.append(ids16)
 ids = ids.append(ids17)
 ids = ids.append(ids18)
 ids = ids.append(ids19)
-ids = ids.append(ids20)
+#ids = ids.append(ids20)
 
 #ids = ids.append(ids11)
 
@@ -129,8 +129,8 @@ bom = botometer.Botometer(mashape_key=mashape_key, **twitter_app_auth)
 
 out.write("username\n")
 
-for user in ids11:
-    out.write(user + "\n")
+#for user in ids11:
+#    out.write(user + "\n")
 
 i = 0
 for user in ids[0:1000]:
