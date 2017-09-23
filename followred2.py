@@ -11,7 +11,7 @@ from tweepy import OAuthHandler
 import botometer
 import networkx as nx
 
-df1 = pd.read_csv('no_bots_0-1000.csv', sep= ';')
+df1 = pd.read_csv('no_bots_1-1000.csv', sep= ';')
 df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
 df3 = pd.read_csv('no_bots_2000-3000.csv', sep= ';')
 df4 = pd.read_csv('no_bots_3000-4000.csv', sep= ';')
