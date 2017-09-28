@@ -49,22 +49,22 @@ ids16 = df16.username
 ids17 = df17.username
 
 
-ids_opos = ids_opos.append(ids2, ignore_index=True)
-ids_opos = ids_opos.append(ids3, ignore_index=True)
-ids_opos = ids_opos.append(ids4, ignore_index=True)
-ids_opos = ids_opos.append(ids5, ignore_index=True)
-ids_opos = ids_opos.append(ids6, ignore_index=True)
-ids_opos = ids_opos.append(ids7, ignore_index=True)
-ids_opos = ids_opos.append(ids8, ignore_index=True)
-ids_opos = ids_opos.append(ids9, ignore_index=True)
-ids_opos = ids_opos.append(ids10, ignore_index=True)
-ids_opos = ids_opos.append(ids11, ignore_index=True)
-ids_opos = ids_opos.append(ids12, ignore_index=True)
-ids_opos = ids_opos.append(ids13, ignore_index=True)
+ids_opos = ids_opos.append(ids2)
+ids_opos = ids_opos.append(ids3)
+ids_opos = ids_opos.append(ids4)
+ids_opos = ids_opos.append(ids5)
+ids_opos = ids_opos.append(ids6)
+ids_opos = ids_opos.append(ids7)
+ids_opos = ids_opos.append(ids8)
+ids_opos = ids_opos.append(ids9)
+ids_opos = ids_opos.append(ids10)
+ids_opos = ids_opos.append(ids11)
+ids_opos = ids_opos.append(ids12)
+ids_opos = ids_opos.append(ids13)
 
-ids_chav = ids_chav.append(ids15, ignore_index=True)
-ids_chav = ids_chav.append(ids16, ignore_index=True)
-ids_chav = ids_chav.append(ids17, ignore_index=True)
+ids_chav = ids_chav.append(ids15)
+ids_chav = ids_chav.append(ids16)
+ids_chav = ids_chav.append(ids17)
 
 
 ids_opos = pd.Series(ids_opos.unique())
