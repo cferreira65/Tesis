@@ -129,7 +129,7 @@ for user in ids_chav:
 
 i = 0
 # usuarios de los hashtags opositores
-for user in ids_opos[4066;4400]:
+for user in ids_opos[4066:4400]:
 #     #print user
     i = i + 1
     try:
