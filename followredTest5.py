@@ -49,22 +49,22 @@ ids16 = df16.username
 ids17 = df17.username
 
 
-ids_opos = ids_opos.append(ids2, ignore_index=True)
-ids_opos = ids_opos.append(ids3, ignore_index=True)
-ids_opos = ids_opos.append(ids4, ignore_index=True)
-ids_opos = ids_opos.append(ids5, ignore_index=True)
-ids_opos = ids_opos.append(ids6, ignore_index=True)
-ids_opos = ids_opos.append(ids7, ignore_index=True)
-ids_opos = ids_opos.append(ids8, ignore_index=True)
-ids_opos = ids_opos.append(ids9, ignore_index=True)
-ids_opos = ids_opos.append(ids10, ignore_index=True)
-ids_opos = ids_opos.append(ids11, ignore_index=True)
-ids_opos = ids_opos.append(ids12, ignore_index=True)
-ids_opos = ids_opos.append(ids13, ignore_index=True)
+ids_opos = ids_opos.append(ids2)
+ids_opos = ids_opos.append(ids3)
+ids_opos = ids_opos.append(ids4)
+ids_opos = ids_opos.append(ids5)
+ids_opos = ids_opos.append(ids6)
+ids_opos = ids_opos.append(ids7)
+ids_opos = ids_opos.append(ids8)
+ids_opos = ids_opos.append(ids9)
+ids_opos = ids_opos.append(ids10)
+ids_opos = ids_opos.append(ids11)
+ids_opos = ids_opos.append(ids12)
+ids_opos = ids_opos.append(ids13)
 
-ids_chav = ids_chav.append(ids15, ignore_index=True)
-ids_chav = ids_chav.append(ids16, ignore_index=True)
-ids_chav = ids_chav.append(ids17, ignore_index=True)
+ids_chav = ids_chav.append(ids15)
+ids_chav = ids_chav.append(ids16)
+ids_chav = ids_chav.append(ids17)
 
 
 ids_opos = pd.Series(ids_opos.unique())
@@ -73,10 +73,10 @@ ids_chav = pd.Series(ids_chav.unique())
 print(ids_opos.size)
 print(ids_chav.size)
 
-CONSUMER_KEY = '5Rcxy0B6hTefj4WfI83Ov4rGn'
-CONSUMER_SECRET = 'IROZKaE6Osnt7FlvVmZlWLEU9V1KT7TyZpda7CgrJKG5Qmtre5'
-ACCESS_KEY = '86460420-9xJaN64nnrumh3QRJEfKWhTFcjf572kOtHGbRMkta'
-ACCESS_SECRET = 'Rarw3wksqYiVDZsTMPebWDztDSuQuXSiIwfz40jgMkrsC'
+CONSUMER_KEY = 'MQk5GsR9OnEZRit8P8SQzvfiR'
+CONSUMER_SECRET = 'THwnKfXJ16X7537yg7WfroxaoDQ5lglSgULMCzCqlZ7PoJmePj'
+ACCESS_KEY = '86460420-UjmQ4dvgJtEsivQqtWONVBc7hIZPxmBU262piBLI0'
+ACCESS_SECRET = '7WtlZQP1i0RVCP25KF6wm5OKOqgDYcdhr0uzcP8kPH2la'
 auth = OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.secure = True
 api = tweepy.API(auth)
@@ -129,7 +129,7 @@ for user in ids_chav:
 
 i = 0
 # usuarios de los hashtags opositores
-for user in ids_opos[2200:2500]:
+for user in ids_opos[3400:3733]:
 #     #print user
     i = i + 1
     try:
@@ -187,7 +187,7 @@ for user in ids_chav[0:0]:
     except Exception, e:
         print(user)
 
-nx.write_graphml(g_all,'follow_all_2200-2500.xml')
-nx.write_graphml(g_opos,'follow_opos_2200-2500.xml')
-nx.write_graphml(g_chav,'follow_chav_2200-2500.xml')
+nx.write_graphml(g_all,'follow_all_3400-3733.xml')
+nx.write_graphml(g_opos,'follow_opos_3400-3733.xml')
+nx.write_graphml(g_chav,'follow_chav_3400-3733.xml')
 

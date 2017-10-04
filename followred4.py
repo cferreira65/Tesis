@@ -73,10 +73,10 @@ ids_chav = pd.Series(ids_chav.unique())
 print(ids_opos.size)
 print(ids_chav.size)
 
-CONSUMER_KEY = '5Rcxy0B6hTefj4WfI83Ov4rGn'
-CONSUMER_SECRET = 'IROZKaE6Osnt7FlvVmZlWLEU9V1KT7TyZpda7CgrJKG5Qmtre5'
-ACCESS_KEY = '86460420-9xJaN64nnrumh3QRJEfKWhTFcjf572kOtHGbRMkta'
-ACCESS_SECRET = 'Rarw3wksqYiVDZsTMPebWDztDSuQuXSiIwfz40jgMkrsC'
+CONSUMER_KEY = 't1qq29K8Ua6cw4JL8Oheyf1Ky'
+CONSUMER_SECRET = '7WVCKC32BlfXNIKrPTbCy7Vp0BRDX4isTD9w7Zrxsjgdx8QRni'
+ACCESS_KEY = '86460420-eLo5G87QXcQOKc7KxyzVuDOwK1sEVNlhHMsrtgaX2'
+ACCESS_SECRET = 'e5dK84Sxmt69lLam2B5kUnWBjt3hkQRP1JehKGapGZGYj'
 auth = OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.secure = True
 api = tweepy.API(auth)
@@ -129,7 +129,7 @@ for user in ids_chav:
 
 i = 0
 # usuarios de los hashtags opositores
-for user in ids_opos[2200:2500]:
+for user in ids_opos[3100:3400]:
 #     #print user
     i = i + 1
     try:
@@ -187,7 +187,6 @@ for user in ids_chav[0:0]:
     except Exception, e:
         print(user)
 
-nx.write_graphml(g_all,'follow_all_2200-2500.xml')
-nx.write_graphml(g_opos,'follow_opos_2200-2500.xml')
-nx.write_graphml(g_chav,'follow_chav_2200-2500.xml')
-
+nx.write_graphml(g_all,'follow_all_3100-3400.xml')
+nx.write_graphml(g_opos,'follow_opos_3100-3400.xml')
+nx.write_graphml(g_chav,'follow_chav_3100-3400.xml')
