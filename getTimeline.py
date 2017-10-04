@@ -3,13 +3,12 @@
 import sys
 import string
 import simplejson
+import random
 import pandas as pd
 import tweepy
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
-import botometer
-import networkx as nx
 
 df1 = pd.read_csv('no_bots_1-1000.csv', sep= ';')
 df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
@@ -73,10 +72,10 @@ ids_chav = pd.Series(ids_chav.unique())
 print(ids_opos.size)
 print(ids_chav.size)
 
-CONSUMER_KEY = 'AjirVhB3YglgJ12hKTHgDW4ev'
-CONSUMER_SECRET = 'vs5TwMcHQ5pL0BZWgm47EojrH3FUkWRc3CJ4xTAAjaAIgg2191'
-ACCESS_KEY = '86460420-wlNgBID9sg5IGOCODBEJmkDfxJnSdUtz3MtsdHUMA'
-ACCESS_SECRET = 'P1wNUDjVzLzNwotVrIVYgmHN0yb3O38e52ljgCD5EiFad'
+CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
+CONSUMER_SECRET = '1l8uippLO9oeJS1b28aPwLqAizI6MkacUXofje6XMcEMEeVAwn'
+ACCESS_KEY = '86460420-zaHoxJV9XSfxnppUTMlmMCtYDgFopK1yg4fiVGBet'
+ACCESS_SECRET = '0uD03WJIlejK5K7YemoSMpXJe4ujII0RfJuERMoiEDLWu'
 auth = OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
 auth.secure = True
 api = tweepy.API(auth)
@@ -99,95 +98,45 @@ twitterStream = Stream(auth,TweetListener())
 desc_opos = []
 desc_chav = []
 
-g_all = nx.DiGraph()
-g_opos = nx.DiGraph()
-g_chav = nx.DiGraph()
+random.shuffle(ids_opos)
+random.shuffle(ids_chav)
 
 i = 1
-for user in ids_opos:
+for user in ids_opos[0:500]:
     try:
-        user_a = api.get_user(screen_name = user)
+        user_a = api.user_timeline(screen_name = user)
         desc_opos.append(user_a)
-        g_all.add_node(user)
-        g_opos.add_node(user)
         print i
         i = i + 1
     except Exception, e:
         print(user)
 
 i = 1
-for user in ids_chav:
+for user in ids_chav[0:500]:
     try:
-        user_a = api.get_user(screen_name = user)
+        user_a = api.user_timeline(screen_name = user)
         desc_chav.append(user_a)
-        g_all.add_node(user)
-        g_chav.add_node(user)
         print i
         i = i + 1
     except Exception, e:
         print(user)
+
+out1 = open("timeline_opos.csv", 'w')
+out2 = open("timeline_chav.csv", 'w')
 
 i = 0
-# usuarios de los hashtags opositores
-for user in ids_opos[4066:4400]:
-#     #print user
+for user in desc_opos:
+    out1.write(str(i))
+    for u in user:
+        out1.write(", https://twitter.com/statuses/" + u.id_str)
+    out1.write("\n")
     i = i + 1
-    try:
-        #desc.append(info.description)
-        user_b_followers = tweepy.Cursor(api.followers_ids, id = user)
-        for page in user_b_followers.pages():
-            #verificar que sigue a alguien de la lista de opositores
-            for user2 in desc_opos:
-                try:
-                    is_following = user2.id in page    
-                    if is_following:
-                        g_all.add_edge(user2.screen_name,user)
-                        g_opos.add_edge(user2.screen_name,user)
-                except Exception, e:
-                    print ("user2 ", user2)
-            # verificar que sigue a alguien de la lista chavista
-            for user2 in desc_chav:
-                try:
-                    is_following = user2.id in page    
-                    if is_following:
-                        g_all.add_edge(user2.screen_name,user)
-                except Exception, e:
-                    print ("user2 ", user2)
-        # print g_all.edges()
-        print i
-    except Exception, e:
-        print(user)
 
-for user in ids_chav[0:0]:
-#     #print user
+for user in desc_chav:
+    out2.write(str(i))
+    for u in user:
+        out2.write(", https://twitter.com/statuses/" + u.id_str)
+    out2.write("\n")
     i = i + 1
-    try:
-        #desc.append(info.description)
-        user_b_followers = tweepy.Cursor(api.followers_ids, id = user)
-        for page in user_b_followers.pages():
-            #verificar que sigue a alguien de la lista de chavista
-            for user2 in desc_chav:
-                try:
-                    is_following = user2.id in page    
-                    if is_following:
-                        g_all.add_edge(user2.screen_name,user)
-                        g_chav.add_edge(user2.screen_name,user)
-                except Exception, e:
-                    print ("user2 ", user2)
-            # verificar que sigue a alguien de la lista de opositores
-            for user2 in desc_opos:
-                try:
-                    is_following = user2.id in page    
-                    if is_following:
-                        g_all.add_edge(user2.screen_name,user)
-                except Exception, e:
-                    print ("user2 ", user2)
-        # print g_all.edges()
-        print i
-    except Exception, e:
-        print(user)
 
-nx.write_graphml(g_all,'follow_all_4066-4400.xml')
-nx.write_graphml(g_opos,'follow_opos_4066-4400.xml')
-nx.write_graphml(g_chav,'follow_chav_4066-4400.xml')
-
+#https://twitter.com/statuses/ID
