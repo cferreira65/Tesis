@@ -1,0 +1,6 @@
+El paper trata de demostrar la hipótesis de si existe una desigualdad de géneros en líderes educacionales, para ello se buscó 151 líderes para el estudio, después de obtener dichas cuentas de Twitter se procedió a crear una red con los más de 30000 tweets sacados, se usaron 6 variables independientes, el género la posición, sus seguidores, las personas siguiendo, tweets por semana y el tiempo que se unió a Twitter, se hicieron análisis sobre la red social para calcular cuatro medidas que llamaron indegree, outdegree, betweenness y closeness y por último se usaron diferentes regresiones para analizar las relaciones.
+
+Indegree: el número de vértices que comunica con un vértice en los tweets.
+Outdegree: lo mismo pero en vez de comunicarse con los tweets se comunica con la red como tal.
+Betweenness: medida numérica que da la influencia de un usuario usando el cálculo de Freeman’s en 1979 cálculo de la fórmula
+Closeness: medida numérica que da la influencia de un usuario cuantificando que tan cerca está dicho usuario con otros usuarios en la red
