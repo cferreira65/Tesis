@@ -65,9 +65,11 @@ ids_chav = ids_chav.append(ids15)
 ids_chav = ids_chav.append(ids16)
 ids_chav = ids_chav.append(ids17)
 
+ids = ids_opos.append(ids_chav)
 
 ids_opos = pd.Series(ids_opos.unique())
 ids_chav = pd.Series(ids_chav.unique())
+ids = pd.Series(ids.unique())
 
 print(ids_opos.size)
 print(ids_chav.size)
@@ -98,11 +100,10 @@ twitterStream = Stream(auth,TweetListener())
 desc_opos = []
 desc_chav = []
 
-random.shuffle(ids_opos)
-random.shuffle(ids_chav)
+random.shuffle(ids)
 
 i = 1
-for user in ids_opos[0:500]:
+for user in ids[0:1000]:
     try:
         user_a = api.user_timeline(screen_name = user)
         desc_opos.append(user_a)
@@ -112,7 +113,7 @@ for user in ids_opos[0:500]:
         print(user)
 
 i = 1
-for user in ids_chav[0:500]:
+for user in ids[1000:2000]:
     try:
         user_a = api.user_timeline(screen_name = user)
         desc_chav.append(user_a)
@@ -121,21 +122,21 @@ for user in ids_chav[0:500]:
     except Exception, e:
         print(user)
 
-out1 = open("timeline_opos.csv", 'w')
-out2 = open("timeline_chav.csv", 'w')
+out1 = open("tweets-0-1000.csv", 'w')
+out2 = open("tweets-1000-2000.csv", 'w')
 
 i = 0
 for user in desc_opos:
     out1.write(str(i))
     for u in user:
-        out1.write(", https://twitter.com/statuses/" + u.id_str)
+        out1.write(", https://twitter.com/dummyacc/status/" + u.id_str)
     out1.write("\n")
     i = i + 1
 
 for user in desc_chav:
     out2.write(str(i))
     for u in user:
-        out2.write(", https://twitter.com/statuses/" + u.id_str)
+        out2.write(", https://twitter.com/dummyacc/status/" + u.id_str)
     out2.write("\n")
     i = i + 1
 
