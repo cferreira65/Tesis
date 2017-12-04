@@ -129,7 +129,7 @@ for user in ids_chav:
 
 i = 0
 # usuarios de los hashtags opositores
-for user in ids_opos[2200:2500]:
+for user in ids_opos:
 #     #print user
     i = i + 1
     try:
@@ -158,7 +158,7 @@ for user in ids_opos[2200:2500]:
     except Exception, e:
         print(user)
 
-for user in ids_chav[0:0]:
+for user in ids_chav:
 #     #print user
     i = i + 1
     try:
@@ -187,7 +187,6 @@ for user in ids_chav[0:0]:
     except Exception, e:
         print(user)
 
-nx.write_graphml(g_all,'follow_all_2200-2500.xml')
-nx.write_graphml(g_opos,'follow_opos_2200-2500.xml')
-nx.write_graphml(g_chav,'follow_chav_2200-2500.xml')
-
+nx.write_graphml(g_all,'follow_all.xml')
+nx.write_graphml(g_opos,'follow_opos.xml')
+nx.write_graphml(g_chav,'follow_chav.xml')
