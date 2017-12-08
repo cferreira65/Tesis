@@ -65,14 +65,21 @@ ids_chav = ids_chav.append(ids15)
 ids_chav = ids_chav.append(ids16)
 ids_chav = ids_chav.append(ids17)
 
-ids = ids_opos.append(ids_chav)
+
 
 ids_opos = pd.Series(ids_opos.unique())
 ids_chav = pd.Series(ids_chav.unique())
+
+random.shuffle(ids_opos)
+random.shuffle(ids_chav)
+
+idso = ids_opos[0:1500]
+idsc = ids_chav[0:1500]
+
+ids = idsc.append(idso)
 ids = pd.Series(ids.unique())
 
-print(ids_opos.size)
-print(ids_chav.size)
+print(ids.size)
 
 CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
 CONSUMER_SECRET = '1l8uippLO9oeJS1b28aPwLqAizI6MkacUXofje6XMcEMEeVAwn'
@@ -97,47 +104,34 @@ class TweetListener(StreamListener):
 #search
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
-desc_opos = []
-desc_chav = []
+desc_1= []
+desc_2 = []
 
 random.shuffle(ids)
 
 i = 1
-for user in ids[0:1000]:
+for user in ids[0:2500]:
     try:
         user_a = api.user_timeline(screen_name = user)
-        desc_opos.append(user_a)
+        desc_1.append(user_a)
+        desc_2.append(user)
         print i
         i = i + 1
     except Exception, e:
         print(user)
+        print(e)
 
-i = 1
-for user in ids[1000:2000]:
-    try:
-        user_a = api.user_timeline(screen_name = user)
-        desc_chav.append(user_a)
-        print i
-        i = i + 1
-    except Exception, e:
-        print(user)
 
-out1 = open("tweets-0-1000.csv", 'w')
-out2 = open("tweets-1000-2000.csv", 'w')
+
+out1 = open("tweets-0-2500.csv", 'w')
 
 i = 0
-for user in desc_opos:
-    out1.write(str(i))
+for user in desc_1:
+    out1.write(desc_2[i])
+    i = i + 1
     for u in user:
-        out1.write(", https://twitter.com/dummyacc/status/" + u.id_str)
+        out1.write(", https://twitter.com/statuses/" + u.id_str)
     out1.write("\n")
-    i = i + 1
 
-for user in desc_chav:
-    out2.write(str(i))
-    for u in user:
-        out2.write(", https://twitter.com/dummyacc/status/" + u.id_str)
-    out2.write("\n")
-    i = i + 1
 
 #https://twitter.com/statuses/ID
