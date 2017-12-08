@@ -12,14 +12,15 @@ from tweepy import OAuthHandler
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from array import array
+from nltk.corpus import stopwords
 
-df1 = pd.read_csv('users_opos_test.csv', sep= ',')
+df1 = pd.read_csv('test.csv', sep= ',')
 # df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
 
 target = array('i')
 data = []
 
-user = df1.user
+user = df1.User
 target_dictionary = {'Chavista': 1, 'Opositor': 2, 'Ninguno':3}
 
 CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
@@ -47,9 +48,9 @@ api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
 
 i = 0
-for u in user[:10]:
+for u in user[:2]:
     try:
-        classification = target_dictionary[df1.carlos[i]]
+        classification = target_dictionary[df1.Carlos[i]]
         i = i + 1
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
@@ -62,14 +63,22 @@ for u in user[:10]:
     except Exception, e:
         print(u)
 
+# stop words
+new_data = []
+for i in data:
+    print(i.split())
+    filtered_words = list(filter(lambda word: word not in stopwords.words('spanish'), i.split()))
+    filtered_words = list(filter(lambda word: word not in stopwords.words('english'), filtered_words))
+    new_data.append(' '.join(word for word in filtered_words))
+
+
 count_vect = CountVectorizer()
-X_train_counts = count_vect.fit_transform(data)
+X_train_counts = count_vect.fit_transform(new_data)
 print(X_train_counts.shape)
 print(count_vect.vocabulary_.get(u'sigue'))
 tfidf_transformer = TfidfTransformer()
 X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 print(X_train_tfidf.shape)
 
-print(len(data))
+print(len(new_data))
 print(len(target))
-
