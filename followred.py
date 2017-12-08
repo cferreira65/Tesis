@@ -190,4 +190,3 @@ for user in ids_chav:
 nx.write_graphml(g_all,'follow_all.xml')
 nx.write_graphml(g_opos,'follow_opos.xml')
 nx.write_graphml(g_chav,'follow_chav.xml')
-
