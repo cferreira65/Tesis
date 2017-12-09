@@ -16,13 +16,13 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
 from array import array
-
+from nltk.corpus import stopwords
 
 df1 = pd.read_csv('users_opos_test.csv', sep= ',')
 # df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
 
 target = array('i')
-train_data = []
+data = []
 
 user = df1.user
 target_dictionary = {'Chavista': 0, 'Opositor': 1, 'Ninguno':2}
@@ -59,10 +59,10 @@ for u in user[:9]:
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
-        train_data.append(description)
+        data.append(description)
         target.append(classification)
         for tweet in timeline:
-            train_data.append(tweet.text)
+            data.append(tweet.text)
             target.append(classification)
     except Exception, e:
         print(u)
@@ -74,8 +74,19 @@ for u in user[:9]:
 
 # text_clf.fit(train_data, target)
 
+# stop words
+train_data = []
+for d in data:
+    # print(i.split())
+    filtered_words = list(filter(lambda word: word not in stopwords.words('spanish'), d.split()))
+    filtered_words = list(filter(lambda word: word not in stopwords.words('english'), filtered_words))
+    train_data.append(' '.join(word for word in filtered_words))
+
 count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(train_data)
+print(X_train_counts.shape)
+print(count_vect.vocabulary_.get(u'búsqueda'))
+
 tfidf_transformer = TfidfTransformer()
 X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 
@@ -91,6 +102,7 @@ clf2 = SGDClassifier(loss='hinge', penalty='l2',
 
 for u in user[9:10]:
     try:
+        data2 = []
         test_data = []
         result = [0,0,0]
         classification = target_dictionary[df1.carlos[i]]
@@ -98,11 +110,19 @@ for u in user[9:10]:
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
-        test_data.append(description)
+        data2.append(description)
         # target.append(classification)
         for tweet in timeline:
-            test_data.append(tweet.text)
+            data2.append(tweet.text)
             # target.append(classification)
+        for d in data2:
+            # print(i.split())
+            filtered_words = list(filter(lambda word: word not in stopwords.words('spanish'), d.split()))
+            filtered_words = list(filter(lambda word: word not in stopwords.words('english'), filtered_words))
+            test_data.append(' '.join(word for word in filtered_words))
+
+        # print(test_data)
+
         X_new_counts = count_vect.transform(test_data)
         X_new_tfidf = tfidf_transformer.transform(X_new_counts)
         predictedNB = clf.predict(X_new_tfidf)
@@ -141,7 +161,7 @@ for u in user[9:10]:
         print(u)
 
 
-print(test_data)
+# print(train_data)
 print(predictedNB)
 print(predictedSGD)
 
@@ -149,4 +169,3 @@ print(predictedSGD)
 
 print(len(train_data))
 print(len(target))
-
