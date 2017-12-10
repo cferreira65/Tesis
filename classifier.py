@@ -25,15 +25,15 @@ def result(lis):
     for prediction in lis:
         count[prediction] = count[prediction] + 1
 
-        if (count[0] == count[1]):
-            res = 2
-        elif (count[0] > count[1] and count[0] > count[2]):
-            res = 0
-        elif (count[1] > count[0] and count[1] > count[2]):
-            res = 1
-        else:
-            res = 2
-        return res
+    if (count[0] == count[1]):
+        res = 2
+    elif (count[0] > count[1] and count[0] > count[2]):
+        res = 0
+    elif (count[1] > count[0] and count[1] > count[2]):
+        res = 1
+    else:
+        res = 2
+    return res
 
 df1 = pd.read_csv('users_opos_test.csv', sep= ',')
 len(df1.user[0:500])
