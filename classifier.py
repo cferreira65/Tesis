@@ -15,10 +15,28 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
+from sklearn import metrics
 from array import array
 from nltk.corpus import stopwords
 
+def result(lis):
+    count = [0,0,0]
+
+    for prediction in lis:
+        count[prediction] = count[prediction] + 1
+
+        if (count[0] == count[1]):
+            res = 2
+        elif (count[0] > count[1] and count[0] > count[2]):
+            res = 0
+        elif (count[1] > count[0] and count[1] > count[2]):
+            res = 1
+        else:
+            res = 2
+        return res
+
 df1 = pd.read_csv('users_opos_test.csv', sep= ',')
+len(df1.user[0:500])
 # df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
 
 target = array('i')
@@ -99,62 +117,44 @@ clf2 = SGDClassifier(loss='hinge', penalty='l2',
 # print(count_vect.vocabulary_.get(u'sigue'))
 # print(X_train_tfidf.shape)
 
-
-for u in user[9:10]:
+NBprediction = []
+SGDprediction = []
+test_clasification = []
+for u in user[9:15]:
     try:
         data2 = []
         test_data = []
-        result = [0,0,0]
         classification = target_dictionary[df1.carlos[i]]
         i = i + 1
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
-        data2.append(description)
+        data2.append(description)        
         # target.append(classification)
         for tweet in timeline:
             data2.append(tweet.text)
-            # target.append(classification)
+            # target.append(classification)            
         for d in data2:
             # print(i.split())
             filtered_words = list(filter(lambda word: word not in stopwords.words('spanish'), d.split()))
             filtered_words = list(filter(lambda word: word not in stopwords.words('english'), filtered_words))
             test_data.append(' '.join(word for word in filtered_words))
 
-        # print(test_data)
 
-        X_new_counts = count_vect.transform(test_data)
+        # print(test_data)
+        X_new_counts = count_vect.transform(test_data)        
         X_new_tfidf = tfidf_transformer.transform(X_new_counts)
         predictedNB = clf.predict(X_new_tfidf)
         # predicted = text_clf.predict(test_data)
         predictedSGD = clf2.predict(X_new_tfidf)
+        res = result(predictedNB)
+        NBprediction.append(res)
+        print("La predicción de NB es: " + str(res))
+        res = result(predictedSGD)
+        SGDprediction.append(res)        
+        print("La predicción de SGD es: " + str(res))
+        test_clasification.append(classification)
 
-        for prediction in predictedNB:
-            result[prediction] = result[prediction] + 1
-
-        if (result[0] == result[1]):
-            res = "Ninguno"
-        elif (result[0] > result[1] and result[0] > result[2]):
-            res = "Chavista"
-        elif (result[1] > result[0] and result[1] > result[2]):
-            res = "Opositor"
-        else:
-            res = "Chavista"
-        print("La predicción de NB es: " + res)
-        
-        result = [0,0,0]
-        for prediction in predictedSGD:
-            result[prediction] = result[prediction] + 1
-
-        if (result[0] == result[1]):
-            res = "Ninguno"
-        elif (result[0] > result[1] and result[0] > result[2]):
-            res = "Chavista"
-        elif (result[1] > result[0] and result[1] > result[2]):
-            res = "Opositor"
-        else:
-            res = "Chavista"
-        print("La predicción de SGD es: " + res)
 
 
     except Exception, e:
@@ -169,3 +169,17 @@ print(predictedSGD)
 
 print(len(train_data))
 print(len(target))
+
+print("Estadisticas de NB:")
+
+print(metrics.classification_report(test_clasification, NBprediction,
+        target_names=["Chavista","Opositor","Ninguno"]))
+
+print(metrics.confusion_matrix(test_clasification, NBprediction))
+
+print("Estadisticas de SVM:")
+
+print(metrics.classification_report(test_clasification, SGDprediction,
+        target_names=["Chavista","Opositor","Ninguno"]))
+
+print(metrics.confusion_matrix(test_clasification, SGDprediction))
