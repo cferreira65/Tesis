@@ -36,14 +36,16 @@ def result(lis):
     return res
 
 df1 = pd.read_csv('users_opos_test.csv', sep= ',')
-len(df1.user[0:500])
-# df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
+df2 = pd.read_csv('users_chav_test.csv', sep= ',')
 
 target = array('i')
 data = []
 
-user = df1.user
-target_dictionary = {'Chavista': 0, 'Opositor': 1, 'Ninguno':2}
+user = df1.User
+user2 = df2.User
+
+print (df1.Carlos)
+target_dictionary = {'Chavista': 0, 'Oposición': 1, 'Ninguno':2}
 
 CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
 CONSUMER_SECRET = '1l8uippLO9oeJS1b28aPwLqAizI6MkacUXofje6XMcEMEeVAwn'
@@ -70,20 +72,42 @@ api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
 
 i = 0
-for u in user[:9]:
+for u in user[:40]:
     try:
-        classification = target_dictionary[df1.carlos[i]]
-        i = i + 1
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
+        classification = target_dictionary[df1.Carlos[i]]
         data.append(description)
         target.append(classification)
+        i = i + 1
         for tweet in timeline:
             data.append(tweet.text)
             target.append(classification)
     except Exception, e:
         print(u)
+        i = i + 1
+
+
+j = 0
+for u in user2[:40]:
+    try:
+        user_object = api.get_user(screen_name = u) 
+        description = user_object.description
+        timeline = api.user_timeline(screen_name = u)
+        classification = target_dictionary[df2.Carlos[j]]
+        data.append(description)
+        target.append(classification)
+        j = j + 1
+
+        for tweet in timeline:
+            data.append(tweet.text)
+            target.append(classification)
+    except Exception, e:
+        print(u)
+        j = j + 1
+
+
 
 # text_clf = Pipeline([('vect', CountVectorizer()),
 #                     ('tfidf', TfidfTransformer()),
@@ -120,15 +144,16 @@ clf2 = SGDClassifier(loss='hinge', penalty='l2',
 NBprediction = []
 SGDprediction = []
 test_clasification = []
-for u in user[9:15]:
+for u in user[40:50]:
     try:
         data2 = []
         test_data = []
-        classification = target_dictionary[df1.carlos[i]]
-        i = i + 1
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
+        classification = target_dictionary[df1.Carlos[i]]
+        i = i + 1
+
         data2.append(description)        
         # target.append(classification)
         for tweet in timeline:
@@ -159,6 +184,51 @@ for u in user[9:15]:
 
     except Exception, e:
         print(u)
+        i = i + 1
+
+
+
+for u in user2[40:50]:
+    try:
+        data2 = []
+        test_data = []
+        user_object = api.get_user(screen_name = u) 
+        description = user_object.description
+        timeline = api.user_timeline(screen_name = u)
+        data2.append(description)        
+        classification = target_dictionary[df2.Carlos[j]]
+        j = j + 1
+
+        # target.append(classification)
+        for tweet in timeline:
+            data2.append(tweet.text)
+            # target.append(classification)            
+        for d in data2:
+            # print(i.split())
+            filtered_words = list(filter(lambda word: word not in stopwords.words('spanish'), d.split()))
+            filtered_words = list(filter(lambda word: word not in stopwords.words('english'), filtered_words))
+            test_data.append(' '.join(word for word in filtered_words))
+
+
+        # print(test_data)
+        X_new_counts = count_vect.transform(test_data)        
+        X_new_tfidf = tfidf_transformer.transform(X_new_counts)
+        predictedNB = clf.predict(X_new_tfidf)
+        # predicted = text_clf.predict(test_data)
+        predictedSGD = clf2.predict(X_new_tfidf)
+        res = result(predictedNB)
+        NBprediction.append(res)
+        print("La predicción de NB es: " + str(res))
+        res = result(predictedSGD)
+        SGDprediction.append(res)        
+        print("La predicción de SGD es: " + str(res))
+        test_clasification.append(classification)
+
+
+
+    except Exception, e:
+        print(u)
+        j = j + 1
 
 
 # print(train_data)
