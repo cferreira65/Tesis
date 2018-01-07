@@ -110,7 +110,7 @@ desc_2 = []
 random.shuffle(ids)
 
 i = 1
-for user in ids[0:2500]:
+for user in ids:
     try:
         user_a = api.user_timeline(screen_name = user)
         desc_1.append(user_a)

@@ -70,7 +70,7 @@ class TweetListener(StreamListener):
 #search
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
-
+ # Opositores
 i = 0
 for u in user[:40]:
     try:
@@ -88,7 +88,7 @@ for u in user[:40]:
         print(u)
         i = i + 1
 
-
+# chavistas
 j = 0
 for u in user2[:40]:
     try:
