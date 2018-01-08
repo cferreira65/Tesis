@@ -36,6 +36,13 @@ class TweetListener(StreamListener):
     def on_error(self, status):
         print status
 
+def quit_character(character, text):
+    new_text = ""
+    for i in text.replace('\n','').encode('utf-8'):
+        new_text =  new_text + i.strip(character)
+
+    return "\"" + new_text + "\""
+
 #search
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
@@ -55,14 +62,13 @@ for user in opos:
         print(user)
         print(e)
 
-out1 = open("oposTimeline.csv", 'w')
+out1 = open("oposTimelineText.csv", 'w')
 
 i = 0
 for user in op:
-    print(i)
     out1.write(user + ";")
     for tw in opos_timeline[i]:
-        out1.write("https://twitter.com/statuses/" + tw.id_str)
+        out1.write(quit_character(';', tw.text))
         out1.write(";")
     out1.write("\n")
     i = i + 1
@@ -77,14 +83,14 @@ for user in chav:
         print(e)
         chav.drop(chav.index[i])
 
-out2 = open("chavTimeline.csv", 'w')
+out2 = open("chavTimelineText.csv", 'w')
 
 i = 0
 for user in ch:
     out2.write(user + ";")
     for tw in chav_timeline[i]:
-        out2.write("https://twitter.com/statuses/" + tw.id_str)
+        out2.write(quit_character(';', tw.text))
         out2.write(";")
     out2.write("\n")
     i = i+1
-#https://twitter.com/statuses/ID
+
