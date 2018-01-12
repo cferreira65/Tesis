@@ -72,7 +72,7 @@ api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
  # Opositores
 i = 0
-for u in user[:40]:
+for u in user[:500]:
     try:
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
@@ -80,6 +80,7 @@ for u in user[:40]:
         classification = target_dictionary[df1.Carlos[i]]
         data.append(description)
         target.append(classification)
+        print(i)
         i = i + 1
         for tweet in timeline:
             data.append(tweet.text)
@@ -90,7 +91,7 @@ for u in user[:40]:
 
 # chavistas
 j = 0
-for u in user2[:40]:
+for u in user2[:500]:
     try:
         user_object = api.get_user(screen_name = u) 
         description = user_object.description
@@ -98,6 +99,7 @@ for u in user2[:40]:
         classification = target_dictionary[df2.Carlos[j]]
         data.append(description)
         target.append(classification)
+        print(j)
         j = j + 1
 
         for tweet in timeline:
@@ -144,7 +146,7 @@ clf2 = SGDClassifier(loss='hinge', penalty='l2',
 NBprediction = []
 SGDprediction = []
 test_clasification = []
-for u in user[40:50]:
+for u in user[500:1050]:
     try:
         data2 = []
         test_data = []
@@ -152,6 +154,7 @@ for u in user[40:50]:
         description = user_object.description
         timeline = api.user_timeline(screen_name = u)
         classification = target_dictionary[df1.Carlos[i]]
+        print(i)
         i = i + 1
 
         data2.append(description)        
@@ -188,7 +191,7 @@ for u in user[40:50]:
 
 
 
-for u in user2[40:50]:
+for u in user2[500:1050]:
     try:
         data2 = []
         test_data = []
@@ -197,6 +200,7 @@ for u in user2[40:50]:
         timeline = api.user_timeline(screen_name = u)
         data2.append(description)        
         classification = target_dictionary[df2.Carlos[j]]
+        print(j)
         j = j + 1
 
         # target.append(classification)

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import sys
 import string
@@ -15,6 +16,8 @@ df2 = pd.read_csv('users_chav_test.csv', sep= ',')
 
 opos = df1.User #you can also use df['column_name']
 chav = df2.User
+clas_opos = df1.Carlos
+clas_chav = df2.Carlos
 
 CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
 CONSUMER_SECRET = '1l8uippLO9oeJS1b28aPwLqAizI6MkacUXofje6XMcEMEeVAwn'
@@ -41,7 +44,7 @@ def quit_character(character, text):
     for i in text.replace('\n','').encode('utf-8'):
         new_text =  new_text + i.strip(character)
 
-    return "\"" + new_text + "\""
+    return new_text 
 
 #search
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
@@ -52,45 +55,54 @@ chav_timeline = []
 op = []
 ch = []
 
-
-for user in opos:
-    try:
-        user_a = api.user_timeline(screen_name = user)
-        opos_timeline.append(user_a)
-        op.append(user)
-    except Exception, e:
-        print(user)
-        print(e)
-
 out1 = open("oposTimelineText.csv", 'w')
 
 i = 0
-for user in op:
-    out1.write(user + ";")
-    for tw in opos_timeline[i]:
-        out1.write(quit_character(';', tw.text))
+for user in opos:
+    try:
+        user_object = api.get_user(screen_name = user)
+        timeline = api.user_timeline(screen_name = user)
+        out1.write(user + ";")
+        out1.write(quit_character(';', user_object.description))
         out1.write(";")
-    out1.write("\n")
-    i = i + 1
+
+        for tw in timeline:
+            out1.write(quit_character(';', tw.text))
+            out1.write(";")
+
+        out1.write(clas_opos[i])
+        out1.write("\n")
+        i = i + 1
+
+    except Exception, e:
+        print(user)
+        i = i + 1
+        print(e)
+
+out1.close()
+
+out2 = open("chavTimelineText.csv", 'w')
+i = 0
 
 for user in chav:
     try:
-        user_a = api.user_timeline(screen_name = user)
-        chav_timeline.append(user_a)
-        ch.append(user)
+        user_object = api.get_user(screen_name = user)
+        timeline = api.user_timeline(screen_name = user)
+        out2.write(user + ";")
+        out2.write(quit_character(';', user_object.description))
+        out2.write(";")
+
+        for tw in timeline:
+            out2.write(quit_character(';', tw.text))
+            out2.write(";")
+
+        out2.write(clas_chav[i])
+        out2.write("\n")
+        i = i + 1
+
     except Exception, e:
         print(user)
+        i = i + 1
         print(e)
-        chav.drop(chav.index[i])
 
-out2 = open("chavTimelineText.csv", 'w')
-
-i = 0
-for user in ch:
-    out2.write(user + ";")
-    for tw in chav_timeline[i]:
-        out2.write(quit_character(';', tw.text))
-        out2.write(";")
-    out2.write("\n")
-    i = i+1
-
+out2.close()
