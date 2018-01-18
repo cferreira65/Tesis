@@ -34,9 +34,9 @@ target_dictionary = {'Chavista\n': 0, 'Oposición\n': 1, 'Ninguno\n':2}
 
 target = array('i')
 data = []
-fp = open('oposTimelineText.csv', 'r')
+fp = open('opos_stopwords.txt', 'r')
 line = fp.readline()
-fp2 = open('chavTimelineText.csv', 'r')
+fp2 = open('chav_stopwords.txt', 'r')
 
 
 user1 = []
@@ -66,7 +66,7 @@ while line:
     clas2.append(target_dictionary[data[-1]])
     line = fp2.readline()
 
-
+print (user2[26])
 fp.close
 fp2.close
 
@@ -108,7 +108,6 @@ NB2 = MultinomialNB().fit(X_train_counts2, target)
 NB3 = MultinomialNB().fit(X_train_tfidf1, target)
 NB4 = MultinomialNB().fit(X_train_tfidf2, target)
 
-
 SGD1 = SGDClassifier(loss='hinge', penalty='l2',
                     alpha=1e-3, random_state=42,
                     max_iter=5, tol=None).fit(X_train_counts1, target)
@@ -133,6 +132,7 @@ SGD7 = SGDClassifier(loss='hinge', penalty='l2',
 SGD8 = SGDClassifier(loss='hinge', penalty='l2',
                     alpha=1e-2, random_state=42,
                     max_iter=5, tol=None).fit(X_train_tfidf2, target)
+
 
 
 NB1prediction = []
@@ -239,7 +239,6 @@ for data in user2[500:]:
     predictedSGD6 = SGD6.predict(X_new_counts2)
     predictedSGD7 = SGD7.predict(X_new_tfidf1)
     predictedSGD8 = SGD8.predict(X_new_tfidf2)
-
 
     res = result(predictedNB1)
     NB1prediction.append(res)

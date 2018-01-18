@@ -1,0 +1,176 @@
+Estadisticas de LG1(n_gram = (1, 1), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       1.00      0.99      1.00       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.99      1.00      0.99        91
+
+avg / total       1.00      1.00      1.00       393
+[[168   0   1]
+ [  0 133   0]
+ [  0   0  91]]
+Estadisticas de LG2(n_gram = (1, 2), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       1.00      0.99      1.00       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.99      1.00      0.99        91
+
+avg / total       1.00      1.00      1.00       393
+[[168   0   1]
+ [  0 133   0]
+ [  0   0  91]]
+Estadisticas de LG3(n_gram = (1, 1), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       1.00      0.99      1.00       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.99      1.00      0.99        91
+
+avg / total       1.00      1.00      1.00       393
+[[168   0   1]
+ [  0 133   0]
+ [  0   0  91]]
+Estadisticas de LG4(n_gram = (1, 2), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       1.00      0.99      1.00       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.99      1.00      0.99        91
+
+avg / total       1.00      1.00      1.00       393
+[[168   0   1]
+ [  0 133   0]
+ [  0   0  91]]
+Estadisticas de NB1(n_gram = (1, 1), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.99      0.98      0.99       169
+   Opositor       0.98      0.99      0.99       133
+    Ninguno       0.98      0.97      0.97        91
+
+avg / total       0.98      0.98      0.98       393
+[[166   1   2]
+ [  1 132   0]
+ [  1   2  88]]
+Estadisticas de NB2(n_gram = (1, 2), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.99      0.99      0.99       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.98      0.99      0.98        91
+
+avg / total       0.99      0.99      0.99       393
+[[167   0   2]
+ [  0 133   0]
+ [  1   0  90]]
+Estadisticas de NB3(n_gram = (1, 1), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.99      0.98      0.99       169
+   Opositor       0.96      1.00      0.98       133
+    Ninguno       0.98      0.92      0.95        91
+
+avg / total       0.97      0.97      0.97       393
+[[166   1   2]
+ [  0 133   0]
+ [  2   5  84]]
+Estadisticas de NB4(n_gram = (1, 2), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.99      0.99      0.99       169
+   Opositor       1.00      1.00      1.00       133
+    Ninguno       0.99      0.99      0.99        91
+
+avg / total       0.99      0.99      0.99       393
+[[168   0   1]
+ [  0 133   0]
+ [  1   0  90]]
+Estadisticas de SVM1(alpha = 0.001, n_gram = (1, 1), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.96      0.96      0.96       169
+   Opositor       0.79      0.99      0.88       133
+    Ninguno       0.98      0.60      0.75        91
+
+avg / total       0.91      0.89      0.88       393
+[[162   6   1]
+ [  1 132   0]
+ [  6  30  55]]
+Estadisticas de SVM2(alpha = 0.001, n_gram = (1, 2), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.99      0.99      0.99       169
+   Opositor       0.95      0.99      0.97       133
+    Ninguno       0.99      0.93      0.96        91
+
+avg / total       0.98      0.98      0.98       393
+[[167   1   1]
+ [  1 132   0]
+ [  0   6  85]]
+Estadisticas de SVM3(alpha = 0.001, n_gram = (1, 1), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.91      0.94      0.93       169
+   Opositor       0.80      0.99      0.88       133
+    Ninguno       0.94      0.55      0.69        91
+
+avg / total       0.88      0.87      0.86       393
+[[159   7   3]
+ [  1 132   0]
+ [ 14  27  50]]
+Estadisticas de SVM4(alpha = 0.001, n_gram = (1, 2), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.94      0.98      0.96       169
+   Opositor       0.87      0.99      0.93       133
+    Ninguno       0.98      0.71      0.83        91
+
+avg / total       0.93      0.92      0.92       393
+[[166   2   1]
+ [  1 132   0]
+ [  9  17  65]]
+Estadisticas de SVM5(alpha = 0.01, n_gram = (1, 1), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.94      0.78      0.85       169
+   Opositor       0.54      0.99      0.70       133
+    Ninguno       0.90      0.10      0.18        91
+
+avg / total       0.79      0.69      0.64       393
+[[131  37   1]
+ [  1 132   0]
+ [  8  74   9]]
+Estadisticas de SVM6(alpha = 0.01, n_gram = (1, 2), tf-idf = False):
+             precision    recall  f1-score   support
+
+   Chavista       0.95      0.81      0.88       169
+   Opositor       0.58      0.99      0.73       133
+    Ninguno       0.90      0.20      0.32        91
+
+avg / total       0.81      0.73      0.70       393
+[[137  30   2]
+ [  1 132   0]
+ [  6  67  18]]
+Estadisticas de SVM7(alpha = 0.01, n_gram = (1, 1), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.88      0.95      0.91       169
+   Opositor       0.80      0.99      0.89       133
+    Ninguno       0.94      0.48      0.64        91
+
+avg / total       0.87      0.85      0.84       393
+[[160   6   3]
+ [  1 132   0]
+ [ 20  27  44]]
+Estadisticas de SVM8(alpha = 0.01, n_gram = (1, 2), tf-idf = True):
+             precision    recall  f1-score   support
+
+   Chavista       0.94      0.98      0.96       169
+   Opositor       0.86      0.99      0.92       133
+    Ninguno       0.98      0.69      0.81        91
+
+avg / total       0.93      0.92      0.91       393
+[[166   2   1]
+ [  1 132   0]
+ [  9  19  63]]
