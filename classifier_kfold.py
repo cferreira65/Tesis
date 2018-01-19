@@ -11,7 +11,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
 from sklearn import metrics
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression
 from nltk.corpus import stopwords
 
@@ -68,12 +68,14 @@ while line:
 fp.close
 fp2.close
 
-kf = KFold(n_splits=5, random_state=42, shuffle = True)
+kf = StratifiedKFold(n_splits=10, random_state=42, shuffle = True)
 
 i = 1
 for train, test in kf.split(user,clas):
     print train
     print test
+    train_data = []
+    target = array('i')
     for t in train:
         for d in user[t]:
             train_data.append(d)
