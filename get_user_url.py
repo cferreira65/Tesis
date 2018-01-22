@@ -10,23 +10,23 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-df1 = pd.read_csv('no_bots_1-1000.csv', sep= ';')
-df2 = pd.read_csv('no_bots_1000-2000.csv', sep= ';')
-df3 = pd.read_csv('no_bots_2000-3000.csv', sep= ';')
-df4 = pd.read_csv('no_bots_3000-4000.csv', sep= ';')
-df5 = pd.read_csv('no_bots_4000-5500.csv', sep= ';')
-df6 = pd.read_csv('no_bots_5500-7000.csv', sep= ';')
-df7 = pd.read_csv('no_bots_7000-8500.csv', sep= ';')
-df8 = pd.read_csv('no_bots_8500-10000.csv', sep= ';')
-df9 = pd.read_csv('no_bots_10000-11500.csv', sep= ';')
-df10 = pd.read_csv('no_bots_11500-13000.csv', sep= ';')
-df11 = pd.read_csv('no_bots_13000-14200.csv', sep= ';')
-df12 = pd.read_csv('no_bots_14200-15335.csv', sep= ';')
+df1 = pd.read_csv('archivos_corridas/no_bots_1-1000.csv', sep= ';')
+df2 = pd.read_csv('archivos_corridas/no_bots_1000-2000.csv', sep= ';')
+df3 = pd.read_csv('archivos_corridas/no_bots_2000-3000.csv', sep= ';')
+df4 = pd.read_csv('archivos_corridas/no_bots_3000-4000.csv', sep= ';')
+df5 = pd.read_csv('archivos_corridas/no_bots_4000-5500.csv', sep= ';')
+df6 = pd.read_csv('archivos_corridas/no_bots_5500-7000.csv', sep= ';')
+df7 = pd.read_csv('archivos_corridas/no_bots_7000-8500.csv', sep= ';')
+df8 = pd.read_csv('archivos_corridas/no_bots_8500-10000.csv', sep= ';')
+df9 = pd.read_csv('archivos_corridas/no_bots_10000-11500.csv', sep= ';')
+df10 = pd.read_csv('archivos_corridas/no_bots_11500-13000.csv', sep= ';')
+df11 = pd.read_csv('archivos_corridas/no_bots_13000-14200.csv', sep= ';')
+df12 = pd.read_csv('archivos_corridas/no_bots_14200-15335.csv', sep= ';')
 df13 = pd.read_csv('Tweets/selected_users_opos.csv', sep =';')
 
-df14 = pd.read_csv('no_bots_15335-16835.csv', sep= ';')
-df15 = pd.read_csv('no_bots_16835-18335.csv', sep= ';')
-df16 = pd.read_csv('no_bots_18335-19804.csv', sep= ';')
+df14 = pd.read_csv('archivos_corridas/no_bots_15335-16835.csv', sep= ';')
+df15 = pd.read_csv('archivos_corridas/no_bots_16835-18335.csv', sep= ';')
+df16 = pd.read_csv('archivos_corridas/no_bots_18335-19804.csv', sep= ';')
 df17 = pd.read_csv('Tweets/selected_users_chav.csv', sep =';')
 
 ids_opos = df1.username #you can also use df['column_name']
