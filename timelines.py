@@ -11,13 +11,13 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-df1 = pd.read_csv('users_opos_test.csv', sep= ',')
-df2 = pd.read_csv('users_chav_test.csv', sep= ',')
+df1 = pd.read_csv('users_opos_final.csv', sep= ',')
+df2 = pd.read_csv('users_chav_final.csv', sep= ',')
 
 opos = df1.User #you can also use df['column_name']
 chav = df2.User
-clas_opos = df1.Carlos
-clas_chav = df2.Carlos
+clas_opos = df1.Clasificador3
+clas_chav = df2.Clasificador3
 
 CONSUMER_KEY = 'FUjJNyet2iQ3DrmSs8zdclFgG'
 CONSUMER_SECRET = '1l8uippLO9oeJS1b28aPwLqAizI6MkacUXofje6XMcEMEeVAwn'

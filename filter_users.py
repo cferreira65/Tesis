@@ -49,16 +49,20 @@ class TweetListener(StreamListener):
 
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
-out = open("all_users.csv", 'w')
+out1 = open("users_opos_final.csv", 'w')
+out2 = open("users_chav_final.csv", 'w')
 
-out.write("User,Link,Clasificador1,Clasificador2,Clasificador3\n")
+
+out1.write("User,Link,Clasificador1,Clasificador2,Clasificador3\n")
+out2.write("User,Link,Clasificador1,Clasificador2,Clasificador3\n")
+
 
 i = 0
 for user in opos:
     try:
         user_a = api.user_timeline(screen_name = user)
         # desc_chav.append(user_a)
-        out.write(user + ",https://twitter.com/" + user + "," + carlos1[i] + "," + dayana1[i] + "," + andres1[i] + "\n")
+        out1.write(user + ",https://twitter.com/" + user + "," + carlos1[i] + "," + dayana1[i] + "," + andres1[i] + "\n")
         i = i + 1
     except Exception, e:
         print(user)
@@ -69,10 +73,12 @@ for user in chav:
     try:
         user_a = api.user_timeline(screen_name = user)
         # desc_chav.append(user_a)
-        out.write(user + ",https://twitter.com/" + user + "," + carlos2[i] + "," + dayana2[i] + "," + andres2[i] + "\n")
+        out2.write(user + ",https://twitter.com/" + user + "," + carlos2[i] + "," + dayana2[i] + "," + andres2[i] + "\n")
         i = i + 1
     except Exception, e:
         print(user)
         i = i + 1
 
-out.close()
+out1.close()
+out2.close()
+

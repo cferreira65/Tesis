@@ -1,176 +1,176 @@
 Estadisticas de LG1(n_gram = (1, 1), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.89      0.92        80
-   Opositor       0.71      0.94      0.81        80
-    Ninguno       0.72      0.34      0.46        38
+   Chavista       0.95      0.84      0.89        83
+   Opositor       0.68      0.90      0.77        81
+    Ninguno       0.55      0.29      0.38        38
 
-avg / total       0.81      0.80      0.79       198
-[[71  8  1]
- [ 1 75  4]
- [ 2 23 13]]
+avg / total       0.76      0.76      0.75       202
+[[70 11  2]
+ [ 1 73  7]
+ [ 3 24 11]]
 Estadisticas de LG2(n_gram = (1, 2), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.89      0.92        80
-   Opositor       0.71      0.94      0.81        80
-    Ninguno       0.67      0.32      0.43        38
+   Chavista       0.96      0.83      0.89        83
+   Opositor       0.64      0.89      0.74        81
+    Ninguno       0.47      0.21      0.29        38
 
-avg / total       0.80      0.80      0.78       198
-[[71  8  1]
- [ 0 75  5]
- [ 3 23 12]]
+avg / total       0.74      0.74      0.72       202
+[[69 14  0]
+ [ 0 72  9]
+ [ 3 27  8]]
 Estadisticas de LG3(n_gram = (1, 1), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.90      0.93        80
-   Opositor       0.75      0.91      0.82        80
-    Ninguno       0.65      0.45      0.53        38
+   Chavista       0.94      0.88      0.91        83
+   Opositor       0.70      0.91      0.80        81
+    Ninguno       0.63      0.32      0.42        38
 
-avg / total       0.82      0.82      0.81       198
-[[72  6  2]
- [ 0 73  7]
- [ 3 18 17]]
+avg / total       0.79      0.79      0.77       202
+[[73 10  0]
+ [ 0 74  7]
+ [ 5 21 12]]
 Estadisticas de LG4(n_gram = (1, 2), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.90      0.93        80
-   Opositor       0.74      0.93      0.82        80
-    Ninguno       0.65      0.39      0.49        38
+   Chavista       0.95      0.89      0.92        83
+   Opositor       0.69      0.91      0.79        81
+    Ninguno       0.47      0.21      0.29        38
 
-avg / total       0.81      0.81      0.80       198
-[[72  6  2]
- [ 0 74  6]
- [ 3 20 15]]
+avg / total       0.76      0.77      0.75       202
+[[74  7  2]
+ [ 0 74  7]
+ [ 4 26  8]]
 Estadisticas de NB1(n_gram = (1, 1), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.88      0.92        80
-   Opositor       0.71      0.89      0.79        80
-    Ninguno       0.60      0.39      0.48        38
+   Chavista       0.91      0.88      0.90        83
+   Opositor       0.71      0.86      0.78        81
+    Ninguno       0.50      0.32      0.39        38
 
-avg / total       0.79      0.79      0.78       198
-[[70  8  2]
- [ 1 71  8]
- [ 2 21 15]]
+avg / total       0.76      0.77      0.75       202
+[[73  8  2]
+ [ 1 70 10]
+ [ 6 20 12]]
 Estadisticas de NB2(n_gram = (1, 2), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       0.96      0.90      0.93        80
-   Opositor       0.74      0.91      0.82        80
-    Ninguno       0.64      0.42      0.51        38
+   Chavista       0.90      0.89      0.90        83
+   Opositor       0.73      0.89      0.80        81
+    Ninguno       0.57      0.32      0.41        38
 
-avg / total       0.81      0.81      0.80       198
-[[72  5  3]
- [ 1 73  6]
- [ 2 20 16]]
+avg / total       0.77      0.78      0.77       202
+[[74  7  2]
+ [ 2 72  7]
+ [ 6 20 12]]
 Estadisticas de NB3(n_gram = (1, 1), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.97      0.88      0.92        80
-   Opositor       0.68      0.96      0.80        80
-    Ninguno       0.69      0.24      0.35        38
+   Chavista       0.89      0.88      0.88        83
+   Opositor       0.68      0.90      0.77        81
+    Ninguno       0.33      0.11      0.16        38
 
-avg / total       0.80      0.79      0.76       198
-[[70  9  1]
- [ 0 77  3]
- [ 2 27  9]]
+avg / total       0.70      0.74      0.70       202
+[[73  8  2]
+ [ 2 73  6]
+ [ 7 27  4]]
 Estadisticas de NB4(n_gram = (1, 2), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.95      0.90      0.92        80
-   Opositor       0.64      0.97      0.78        80
-    Ninguno       1.00      0.03      0.05        38
+   Chavista       0.87      0.90      0.89        83
+   Opositor       0.68      0.93      0.78        81
+    Ninguno       0.20      0.03      0.05        38
 
-avg / total       0.84      0.76      0.70       198
-[[72  8  0]
- [ 2 78  0]
- [ 2 35  1]]
+avg / total       0.67      0.75      0.69       202
+[[75  7  1]
+ [ 3 75  3]
+ [ 8 29  1]]
 Estadisticas de SVM1(alpha = 0.001, n_gram = (1, 1), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       1.00      0.89      0.94        80
-   Opositor       0.70      0.95      0.80        80
-    Ninguno       0.72      0.34      0.46        38
+   Chavista       0.96      0.78      0.86        83
+   Opositor       0.63      0.91      0.74        81
+    Ninguno       0.50      0.21      0.30        38
 
-avg / total       0.82      0.81      0.79       198
-[[71  8  1]
- [ 0 76  4]
- [ 0 25 13]]
+avg / total       0.74      0.73      0.71       202
+[[65 17  1]
+ [ 0 74  7]
+ [ 3 27  8]]
 Estadisticas de SVM2(alpha = 0.001, n_gram = (1, 2), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       1.00      0.90      0.95        80
-   Opositor       0.70      0.96      0.81        80
-    Ninguno       0.75      0.32      0.44        38
+   Chavista       0.95      0.75      0.84        83
+   Opositor       0.61      0.91      0.73        81
+    Ninguno       0.47      0.18      0.26        38
 
-avg / total       0.83      0.81      0.80       198
-[[72  7  1]
- [ 0 77  3]
- [ 0 26 12]]
+avg / total       0.72      0.71      0.69       202
+[[62 20  1]
+ [ 0 74  7]
+ [ 3 28  7]]
 Estadisticas de SVM3(alpha = 0.001, n_gram = (1, 1), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.95      0.91      0.93        80
-   Opositor       0.75      0.96      0.85        80
-    Ninguno       0.84      0.42      0.56        38
+   Chavista       0.88      0.89      0.89        83
+   Opositor       0.72      0.90      0.80        81
+    Ninguno       0.41      0.18      0.25        38
 
-avg / total       0.85      0.84      0.83       198
-[[73  7  0]
- [ 0 77  3]
- [ 4 18 16]]
+avg / total       0.73      0.76      0.73       202
+[[74  6  3]
+ [ 1 73  7]
+ [ 9 22  7]]
 Estadisticas de SVM4(alpha = 0.001, n_gram = (1, 2), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.91      0.94      0.93        80
-   Opositor       0.78      0.91      0.84        80
-    Ninguno       0.78      0.47      0.59        38
+   Chavista       0.83      0.93      0.87        83
+   Opositor       0.77      0.89      0.83        81
+    Ninguno       0.44      0.18      0.26        38
 
-avg / total       0.84      0.84      0.83       198
-[[75  5  0]
- [ 2 73  5]
- [ 5 15 18]]
+avg / total       0.73      0.77      0.74       202
+[[77  3  3]
+ [ 3 72  6]
+ [13 18  7]]
 Estadisticas de SVM5(alpha = 0.01, n_gram = (1, 1), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       1.00      0.79      0.88        80
-   Opositor       0.61      1.00      0.76        80
-    Ninguno       0.50      0.05      0.10        38
+   Chavista       0.96      0.55      0.70        83
+   Opositor       0.52      0.98      0.68        81
+    Ninguno       0.33      0.03      0.05        38
 
-avg / total       0.75      0.73      0.68       198
-[[63 15  2]
- [ 0 80  0]
- [ 0 36  2]]
+avg / total       0.67      0.62      0.57       202
+[[46 37  0]
+ [ 0 79  2]
+ [ 2 35  1]]
 Estadisticas de SVM6(alpha = 0.01, n_gram = (1, 2), tf-idf = False):
              precision    recall  f1-score   support
 
-   Chavista       1.00      0.80      0.89        80
-   Opositor       0.62      1.00      0.77        80
-    Ninguno       0.60      0.08      0.14        38
+   Chavista       0.96      0.58      0.72        83
+   Opositor       0.53      0.98      0.69        81
+    Ninguno       0.25      0.03      0.05        38
 
-avg / total       0.77      0.74      0.70       198
-[[64 14  2]
- [ 0 80  0]
- [ 0 35  3]]
+avg / total       0.66      0.63      0.58       202
+[[48 34  1]
+ [ 0 79  2]
+ [ 2 35  1]]
 Estadisticas de SVM7(alpha = 0.01, n_gram = (1, 1), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.95      0.93      0.94        80
-   Opositor       0.74      0.97      0.84        80
-    Ninguno       0.87      0.34      0.49        38
+   Chavista       0.91      0.83      0.87        83
+   Opositor       0.66      0.96      0.78        81
+    Ninguno       0.50      0.11      0.17        38
 
-avg / total       0.85      0.83      0.81       198
-[[74  6  0]
- [ 0 78  2]
- [ 4 21 13]]
+avg / total       0.73      0.75      0.70       202
+[[69 13  1]
+ [ 0 78  3]
+ [ 7 27  4]]
 Estadisticas de SVM8(alpha = 0.01, n_gram = (1, 2), tf-idf = True):
              precision    recall  f1-score   support
 
-   Chavista       0.94      0.93      0.93        80
-   Opositor       0.77      0.91      0.83        80
-    Ninguno       0.71      0.45      0.55        38
+   Chavista       0.87      0.90      0.89        83
+   Opositor       0.72      0.90      0.80        81
+    Ninguno       0.50      0.18      0.27        38
 
-avg / total       0.82      0.83      0.82       198
-[[74  5  1]
- [ 1 73  6]
- [ 4 17 17]]
+avg / total       0.74      0.77      0.74       202
+[[75  7  1]
+ [ 2 73  6]
+ [ 9 22  7]]

@@ -68,6 +68,23 @@ while line:
 fp.close
 fp2.close
 
+statistic1 = [[], [], []]
+statistic2 = [[], [], []]
+statistic3 = [[], [], []]
+statistic4 = [[], [], []]
+statistic5 = [[], [], []]
+statistic6 = [[], [], []]
+statistic7 = [[], [], []]
+statistic8 = [[], [], []]
+statistic9 = [[], [], []]
+statistic10 = [[], [], []]
+statistic11 = [[], [], []]
+statistic12 = [[], [], []]
+statistic13 = [[], [], []]
+statistic14 = [[], [], []]
+statistic15 = [[], [], []]
+statistic16 = [[], [], []]
+
 kf = StratifiedKFold(n_splits=10, random_state=42, shuffle = True)
 
 i = 1
@@ -243,6 +260,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, LG1prediction, average='weighted')
+    statistic1[0].append(res[0])
+    statistic1[1].append(res[1])
+    statistic1[2].append(res[2])
+
     out.write("Estadisticas de LG2(n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG2prediction,
@@ -251,6 +273,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, LG2prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, LG2prediction, average='weighted')
+    statistic2[0].append(res[0])
+    statistic2[1].append(res[1])
+    statistic2[2].append(res[2])
 
     out.write("Estadisticas de LG3(n_gram = (1, 1), tf-idf = True):\n")
 
@@ -261,6 +288,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, LG3prediction, average='weighted')
+    statistic3[0].append(res[0])
+    statistic3[1].append(res[1])
+    statistic3[2].append(res[2])
+
     out.write("Estadisticas de LG4(n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG4prediction,
@@ -269,6 +301,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, LG4prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, LG4prediction, average='weighted')
+    statistic4[0].append(res[0])
+    statistic4[1].append(res[1])
+    statistic4[2].append(res[2])
 
     out.write("Estadisticas de NB1(n_gram = (1, 1), tf-idf = False):\n")
 
@@ -279,6 +316,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, NB1prediction, average='weighted')
+    statistic5[0].append(res[0])
+    statistic5[1].append(res[1])
+    statistic5[2].append(res[2])
+
     out.write("Estadisticas de NB2(n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB2prediction,
@@ -287,6 +329,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, NB2prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, NB2prediction, average='weighted')
+    statistic6[0].append(res[0])
+    statistic6[1].append(res[1])
+    statistic6[2].append(res[2])
 
     out.write("Estadisticas de NB3(n_gram = (1, 1), tf-idf = True):\n")
 
@@ -297,6 +344,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, NB3prediction, average='weighted')
+    statistic7[0].append(res[0])
+    statistic7[1].append(res[1])
+    statistic7[2].append(res[2])
+
     out.write("Estadisticas de NB4(n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB4prediction,
@@ -305,6 +357,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, NB4prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, NB4prediction, average='weighted')
+    statistic8[0].append(res[0])
+    statistic8[1].append(res[1])
+    statistic8[2].append(res[2])
 
     out.write("Estadisticas de SVM1(alpha = 0.001, n_gram = (1, 1), tf-idf = False):\n")
 
@@ -315,6 +372,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD1prediction, average='weighted')
+    statistic9[0].append(res[0])
+    statistic9[1].append(res[1])
+    statistic9[2].append(res[2])
+
     out.write("Estadisticas de SVM2(alpha = 0.001, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD2prediction,
@@ -323,6 +385,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, SGD2prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD2prediction, average='weighted')
+    statistic10[0].append(res[0])
+    statistic10[1].append(res[1])
+    statistic10[2].append(res[2])
 
     out.write("Estadisticas de SVM3(alpha = 0.001, n_gram = (1, 1), tf-idf = True):\n")
 
@@ -333,6 +400,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD3prediction, average='weighted')
+    statistic11[0].append(res[0])
+    statistic11[1].append(res[1])
+    statistic11[2].append(res[2])
+
     out.write("Estadisticas de SVM4(alpha = 0.001, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD4prediction,
@@ -341,6 +413,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, SGD4prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD4prediction, average='weighted')
+    statistic12[0].append(res[0])
+    statistic12[1].append(res[1])
+    statistic12[2].append(res[2])
 
     out.write("Estadisticas de SVM5(alpha = 0.01, n_gram = (1, 1), tf-idf = False):\n")
 
@@ -351,6 +428,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD5prediction, average='weighted')
+    statistic13[0].append(res[0])
+    statistic13[1].append(res[1])
+    statistic13[2].append(res[2])
+
     out.write("Estadisticas de SVM6(alpha = 0.01, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD6prediction,
@@ -359,6 +441,11 @@ for train, test in kf.split(user,clas):
     out.write(str(metrics.confusion_matrix(test_clasification, SGD6prediction)))
 
     out.write("\n")
+
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD6prediction, average='weighted')
+    statistic14[0].append(res[0])
+    statistic14[1].append(res[1])
+    statistic14[2].append(res[2])
 
     out.write("Estadisticas de SVM7(alpha = 0.01, n_gram = (1, 1), tf-idf = True):\n")
 
@@ -369,6 +456,11 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD7prediction, average='weighted')
+    statistic15[0].append(res[0])
+    statistic15[1].append(res[1])
+    statistic15[2].append(res[2])
+
     out.write("Estadisticas de SVM8(alpha = 0.01, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD8prediction,
@@ -378,4 +470,94 @@ for train, test in kf.split(user,clas):
 
     out.write("\n")
 
+    res = metrics.precision_recall_fscore_support(test_clasification, SGD8prediction, average='weighted')
+    statistic16[0].append(res[0])
+    statistic16[1].append(res[1])
+    statistic16[2].append(res[2])
+
     out.close()
+
+
+out = open("avg_kfold", 'w')
+
+out.write("Promedio de LG1:\n")
+out.write("Precision: " + str(np.mean(statistic1[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic1[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic1[2])) + "\n")
+
+out.write("\nPromedio de LG2:\n")
+out.write("Precision: " + str(np.mean(statistic2[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic2[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic2[2])) + "\n")
+
+out.write("\nPromedio de LG3:\n")
+out.write("Precision: " + str(np.mean(statistic3[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic3[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic3[2])) + "\n")
+
+out.write("\nPromedio de LG4:\n")
+out.write("Precision: " + str(np.mean(statistic4[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic4[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic4[2])) + "\n")
+
+out.write("\nPromedio de NB1:\n")
+out.write("Precision: " + str(np.mean(statistic5[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic5[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic5[2])) + "\n")
+
+out.write("\nPromedio de NB2:\n")
+out.write("Precision: " + str(np.mean(statistic6[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic6[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic6[2])) + "\n")
+
+out.write("\nPromedio de NB3:\n")
+out.write("Precision: " + str(np.mean(statistic7[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic7[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic7[2])) + "\n")
+
+out.write("\nPromedio de NB4:\n")
+out.write("Precision: " + str(np.mean(statistic8[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic8[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic8[2])) + "\n")
+
+out.write("\nPromedio de SVM1:\n")
+out.write("Precision: " + str(np.mean(statistic9[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic9[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic9[2])) + "\n")
+
+out.write("\nPromedio de SVM2:\n")
+out.write("Precision: " + str(np.mean(statistic10[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic10[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic10[2])) + "\n")
+
+out.write("\nPromedio de SVM3:\n")
+out.write("Precision: " + str(np.mean(statistic11[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic11[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic11[2])) + "\n")
+
+out.write("\nPromedio de SVM4:\n")
+out.write("Precision: " + str(np.mean(statistic12[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic12[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic12[2])) + "\n")
+
+out.write("\nPromedio de SVM5:\n")
+out.write("Precision: " + str(np.mean(statistic13[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic13[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic13[2])) + "\n")
+
+out.write("\nPromedio de SVM6:\n")
+out.write("Precision: " + str(np.mean(statistic14[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic14[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic14[2])) + "\n")
+
+out.write("\nPromedio de SVM7:\n")
+out.write("Precision: " + str(np.mean(statistic15[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic15[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic15[2])) + "\n")
+
+out.write("\nPromedio de SVM8:\n")
+out.write("Precision: " + str(np.mean(statistic16[0])) + "\n")
+out.write("Recall: " + str(np.mean(statistic16[1])) + "\n")
+out.write("Fscore: " + str(np.mean(statistic16[2])) + "\n")
+
+out.close()
