@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import string
+import random
 import pandas as pd
 import numpy as np
 from array import array
@@ -15,21 +16,22 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression
 from nltk.corpus import stopwords
 
+random.seed(42)
 
 def result(lis):
-    count = [0,0,0]
+    count = [0,0]
 
     for prediction in lis:
         count[prediction] = count[prediction] + 1
 
     if (count[0] == count[1]):
-        res = 2
-    elif (count[0] > count[1] and count[0] > count[2]):
+        res = random.randint(0,1)
+    elif (count[0] > count[1]):
         res = 0
-    elif (count[1] > count[0] and count[1] > count[2]):
+    elif (count[1] > count[0]):
         res = 1
     else:
-        res = 2
+        res = random.randint(0,1)
     return res
 
 target_dictionary = {'Chavista\n': 0, 'Oposición\n': 1, 'Ninguno\n':2}
@@ -51,7 +53,10 @@ while line:
 
     data = line.split(';')
     user.append(data[1:-1])
-    clas.append(target_dictionary[data[-1]])
+    if target_dictionary[data[-1]] == 2:
+        clas.append(1)
+    else:
+        clas.append(target_dictionary[data[-1]])
     line = fp.readline()
 
 line = fp2.readline()
@@ -62,7 +67,10 @@ while line:
 
     data = line.split(';')
     user.append(data[1:-1])
-    clas.append(target_dictionary[data[-1]])
+    if target_dictionary[data[-1]] == 2:
+        clas.append(0)
+    else:
+        clas.append(target_dictionary[data[-1]])
     line = fp2.readline()
 
 fp.close
@@ -244,7 +252,7 @@ for train, test in kf.split(user,clas):
         #print("La predicción de SGD es: " + str(res))
         test_clasification.append(clas[t])
 
-    string = "resultados/res_kfold" + str(i) + ".txt"
+    string = "resultados/Opos_chav/res_kfold" + str(i) + ".txt"
     i = i + 1
     out = open(string, 'w')
 
@@ -254,7 +262,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de LG1(n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG1prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, LG1prediction)))
 
@@ -268,7 +276,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de LG2(n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG2prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, LG2prediction)))
 
@@ -282,7 +290,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de LG3(n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG3prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, LG3prediction)))
 
@@ -296,7 +304,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de LG4(n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, LG4prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, LG4prediction)))
 
@@ -310,7 +318,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de NB1(n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB1prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, NB1prediction)))
 
@@ -324,7 +332,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de NB2(n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB2prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, NB2prediction)))
 
@@ -338,7 +346,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de NB3(n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB3prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, NB3prediction)))
 
@@ -352,7 +360,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de NB4(n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, NB4prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, NB4prediction)))
 
@@ -366,7 +374,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM1(alpha = 0.001, n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD1prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD1prediction)))
 
@@ -380,7 +388,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM2(alpha = 0.001, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD2prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD2prediction)))
 
@@ -394,7 +402,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM3(alpha = 0.001, n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD3prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD3prediction)))
 
@@ -408,7 +416,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM4(alpha = 0.001, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD4prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD4prediction)))
 
@@ -422,7 +430,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM5(alpha = 0.01, n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD5prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD5prediction)))
 
@@ -436,7 +444,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM6(alpha = 0.01, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD6prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD6prediction)))
 
@@ -450,7 +458,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM7(alpha = 0.01, n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD7prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD7prediction)))
 
@@ -464,7 +472,7 @@ for train, test in kf.split(user,clas):
     out.write("Estadisticas de SVM8(alpha = 0.01, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD8prediction,
-            target_names=["Chavista","Opositor","Ninguno"])))
+            target_names=["Chavista","Opositor"])))
 
     out.write(str(metrics.confusion_matrix(test_clasification, SGD8prediction)))
 
@@ -478,7 +486,7 @@ for train, test in kf.split(user,clas):
     out.close()
 
 
-out = open("avg_kfold", 'w')
+out = open("resultados/Opos_chav/avg_kfold", 'w')
 
 out.write("Promedio de LG1:\n")
 out.write("Precision: " + str(np.mean(statistic1[0])) + "\n")

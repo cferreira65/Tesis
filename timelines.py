@@ -11,8 +11,8 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-df1 = pd.read_csv('users_opos_final.csv', sep= ',')
-df2 = pd.read_csv('users_chav_final.csv', sep= ',')
+df1 = pd.read_csv('users_clasificados/users_opos_final.csv', sep= ',')
+df2 = pd.read_csv('users_clasificados/users_chav_final.csv', sep= ',')
 
 opos = df1.User #you can also use df['column_name']
 chav = df2.User
@@ -55,7 +55,7 @@ chav_timeline = []
 op = []
 ch = []
 
-out1 = open("oposTimelineText.csv", 'w')
+out1 = open("timelines/oposTimelineText.csv", 'w')
 
 i = 0
 for user in opos:
@@ -81,7 +81,7 @@ for user in opos:
 
 out1.close()
 
-out2 = open("chavTimelineText.csv", 'w')
+out2 = open("timelines/chavTimelineText.csv", 'w')
 i = 0
 
 for user in chav:

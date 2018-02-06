@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 #print(df1.iloc[0])
 
 data = []
-fp = open('oposTimelineText.csv', 'r')
+fp = open('../timelines/oposTimelineText.csv', 'r')
 line = fp.readline()
 out = open("opos_stopwords.txt", 'w')
 
@@ -39,7 +39,7 @@ fp.close
 out.close
 
 data = []
-fp2 = open('chavTimelineText.csv', 'r')
+fp2 = open('../timelines/chavTimelineText.csv', 'r')
 line = fp2.readline()
 out2 = open("chav_stopwords.txt", 'w')
 

@@ -11,8 +11,8 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-df1 = pd.read_csv('users_opos.csv', sep= ',')
-df2 = pd.read_csv('users_chav.csv', sep= ',')
+df1 = pd.read_csv('users_clasificados/users_opos.csv', sep= ',')
+df2 = pd.read_csv('users_clasificados/users_chav.csv', sep= ',')
 
 opos = df1.User
 chav = df2.User
@@ -49,8 +49,8 @@ class TweetListener(StreamListener):
 
 api = tweepy.API(auth,wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 twitterStream = Stream(auth,TweetListener())
-out1 = open("users_opos_final.csv", 'w')
-out2 = open("users_chav_final.csv", 'w')
+out1 = open("users_clasificados/users_opos_final.csv", 'w')
+out2 = open("users_clasificados/users_chav_final.csv", 'w')
 
 
 out1.write("User,Link,Clasificador1,Clasificador2,Clasificador3\n")
