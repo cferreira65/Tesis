@@ -56,7 +56,7 @@ while line:
 			stemmer = Stemmer.Stemmer(get_language(twt))
 			for word in twt.split():
 				new_text = new_text + stemmer.stemWord(word) + " "
-			print(new_text)
+			# print(new_text)
 			result.append(new_text)
 		except:
 			result.append(twt)
@@ -99,7 +99,7 @@ while line:
 			stemmer = Stemmer.Stemmer(get_language(twt))
 			for word in twt.split():
 				new_text = new_text + stemmer.stemWord(word) + " "
-			print(new_text)
+			# print(new_text)
 			result.append(new_text)
 		except:
 			result.append(twt)
