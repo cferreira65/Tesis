@@ -47,6 +47,7 @@ while line:
 
 	data = line.split(';')
 	user = [data.pop(0)]
+	print(user)
 	result = []
 
 	new_text = ""
@@ -56,19 +57,20 @@ while line:
 			stemmer = Stemmer.Stemmer(get_language(twt))
 			for word in twt.split():
 				new_text = new_text + stemmer.stemWord(word) + " "
-			# print(new_text)
-			result.append(new_text)
-		except:
-			result.append(twt)
+			user.append(new_text)
 
-	opos.append(user.append(result))
+		except Exception, e:
+			print(user)
+			print(e)
+
+	opos.append(user)
 	line = fp.readline()
 
 i = 0
 for user in opos:
     try:
         for tw in user:
-            out1.write(quit_character(';', tw.text))
+            out1.write(u' '.join(tw).encode('utf-8').strip())
             out1.write(";")
 		
 		
@@ -84,44 +86,44 @@ for user in opos:
 fp.close
 out1.close()
 
-line = fp2.readline()
+# #line = fp2.readline()
 
-while line:
+# while line:
 
-	data = line.split(';')
-	user = [data.pop(0)]
-	result = []
+# 	data = line.split(';')
+# 	user = [data.pop(0)]
+# 	result = []
 
-	new_text = ""
-	for twt in data:
-		try: 
-			twt = robust_decode(twt)
-			stemmer = Stemmer.Stemmer(get_language(twt))
-			for word in twt.split():
-				new_text = new_text + stemmer.stemWord(word) + " "
-			# print(new_text)
-			result.append(new_text)
-		except:
-			result.append(twt)
+# 	new_text = ""
+# 	for twt in data:
+# 		try: 
+# 			twt = robust_decode(twt)
+# 			stemmer = Stemmer.Stemmer(get_language(twt))
+# 			for word in twt.split():
+# 				new_text = new_text + stemmer.stemWord(word) + " "
+# 			# print(new_text)
+# 			result.append(new_text)
+# 		except:
+# 			result.append(twt)
 
-	chav.append(user.append(result))
-	line = fp2.readline()
+# 	chav.append(user.append(result))
+# 	line = fp2.readline()
 
 
-i = 0
-for user in chav:
-    try:
-        for tw in timeline:
-            out2.write(quit_character(';', tw.text))
-            out2.write(";")
+# i = 0
+# for user in chav:
+#     try:
+#         for tw in timeline:
+#             out2.write(quit_character(';', tw.text))
+#             out2.write(";")
 
-    except Exception, e:
-        print(user)
-        i = i + 1
-        print(e)
+#     except Exception, e:
+#         print(user)
+#         i = i + 1
+#         print(e)
 
-	out2.write("\n")
-    i = i + 1
+# 	out2.write("\n")
+#     i = i + 1
 	
-out2.close()
-fp2.close
+# out2.close()
+# fp2.close
