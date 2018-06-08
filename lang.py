@@ -3,12 +3,6 @@ import Stemmer
 
 # DetectorFactory.seed = 0
 
-def quit_character(character, text):
-    new_text = ""
-    for i in text.replace('\n','').encode('utf-8'):
-        new_text =  new_text + i.strip(character)
-
-    return new_text 
 
 def robust_decode(bs):
     '''Takes a byte string as param and convert it into a unicode one.
@@ -35,58 +29,74 @@ def get_language(sentence):
 		return 'english'
 
 data = []
-fp = open('stopwords/opos_stopwords.txt', 'r')
+fp = open('stopwords/test1.csv', 'r')
 out1 = open("timelines/oposTimelineStemming.csv", 'w')
-line = fp.readline()
-fp2 = open('stopwords/chav_stopwords.txt', 'r')
-out2 = open("timelines/chavTimelineStemming.csv", 'w')
+# line = fp.readline()
+# fp2 = open('stopwords/test1.csv', 'r')
+# out2 = open("timelines/chavTimelineStemming.csv", 'w')
 opos = []
 chav = []
 
+# leo la primera linea
+line = fp.readline()
+
 while line:
 
+	#  divido la linea leia en cada item del csv
 	data = line.split(';')
+	#  elimino el usuario de la lista (no debe hacerse stemming de el)
 	user = [data.pop(0)]
-	print(user)
-	result = []
 
-	new_text = ""
+	#  para cada tweet o bio de la linea leida
 	for twt in data:
+		new_text = "" # nuevo texto stemmed
 		try: 
-			twt = robust_decode(twt)
-			stemmer = Stemmer.Stemmer(get_language(twt))
-			for word in twt.split():
-				new_text = new_text + stemmer.stemWord(word) + " "
+			twt = robust_decode(twt) # decode de caracteres y emojis
+			stemmer = Stemmer.Stemmer(get_language(twt)) # deteccion de idioma e inicializacion del stemming
+
+			for word in twt.split(): # para cada palabra del tweet 
+				# aplico stemming en la palabra y reconstruyo el string
+				new_text = new_text + stemmer.stemWord(word) + " " 
+
+			# agrego el tweet ya stemmed a los datos del ususario
 			user.append(new_text)
 
+		# si falla, agrego el tweet sin stemming
 		except Exception, e:
-			print(user)
-			print(e)
+			user.append(twt)
 
+	# agrego el usuario a la lista de users
 	opos.append(user)
+
+	# leo una nueva linea
 	line = fp.readline()
 
-i = 0
+# cierro el archivo de entrada
+fp.close
+
+# para cada usuario en la lista de users
 for user in opos:
     try:
+    	# para cada tweet del usuario 
         for tw in user:
-            out1.write(u' '.join(tw).encode('utf-8').strip())
-            out1.write(";")
-		
-		
+        	# escribo separando con ; (formato csv)
+            out1.write(u''.join(tw).encode('utf-8'))
+            # out1.write(";")
+
+        out1.write("\n")
+			
+	# si hay error muestro el usuario que falla y el error
     except Exception, e:
         print(user)
-        i = i + 1
         print(e)
 
-	out1.write("\n")
-        i = i + 1
-	
+    # escribo el salto de linea
 
-fp.close
+	
+# cierro el archivo de salida
 out1.close()
 
-# #line = fp2.readline()
+# line = fp2.readline()
 
 # while line:
 
@@ -102,28 +112,27 @@ out1.close()
 # 			for word in twt.split():
 # 				new_text = new_text + stemmer.stemWord(word) + " "
 # 			# print(new_text)
-# 			result.append(new_text)
+# 			user.append(new_text)
 # 		except:
-# 			result.append(twt)
+# 			user.append(twt)
 
-# 	chav.append(user.append(result))
+# 	chav.append(user)
 # 	line = fp2.readline()
 
+# print(chav)
 
-# i = 0
 # for user in chav:
 #     try:
-#         for tw in timeline:
-#             out2.write(quit_character(';', tw.text))
+#          for tw in user:
+#             out2.write(u''.join(tw).encode('utf-8'))
 #             out2.write(";")
 
 #     except Exception, e:
 #         print(user)
-#         i = i + 1
 #         print(e)
 
-# 	out2.write("\n")
-#     i = i + 1
+# 	out2.write('AAAAAAAAAAAAAAAAAAAAAAAAA')
+
 	
 # out2.close()
 # fp2.close
