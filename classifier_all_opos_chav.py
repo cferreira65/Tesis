@@ -11,6 +11,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
+from sklearn import svm
 from sklearn import metrics
 from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression
@@ -38,9 +39,9 @@ target_dictionary = {'Chavista\n': 0, 'Oposición\n': 1, 'Ninguno\n':2}
 
 target = array('i')
 data = []
-fp = open('stopwords/opos_stopwords.txt', 'r')
+fp = open('stemming/opos_stemming.txt', 'r')
 line = fp.readline()
-fp2 = open('stopwords/chav_stopwords.txt', 'r')
+fp2 = open('stemming/chav_stemming.txt', 'r')
 
 
 user = []
@@ -134,30 +135,22 @@ for train, test in kf.split(user,clas):
     NB3 = MultinomialNB().fit(X_train_tfidf1, target)
     NB4 = MultinomialNB().fit(X_train_tfidf2, target)
 
-    SGD1 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-3, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_counts1, target)
-    SGD2 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-3, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_counts2, target)
-    SGD3 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-3, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_tfidf1, target)
-    SGD4 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-3, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_tfidf2, target)
-    SGD5 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-2, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_counts1, target)
-    SGD6 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-2, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_counts2, target)
-    SGD7 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-2, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_tfidf1, target)
-    SGD8 = SGDClassifier(loss='hinge', penalty='l2',
-                        alpha=1e-2, random_state=42,
-                        max_iter=5, tol=None).fit(X_train_tfidf2, target)
+    SGD1 = svm.LinearSVC(C=1.0, random_state = 42).fit(X_train_counts1, target)
+    print 1
+    SGD2 = svm.LinearSVC(C=1.0, random_state = 42).fit(X_train_counts2, target)
+    print 2
+    SGD3 = svm.LinearSVC(C=1.0, random_state = 42).fit(X_train_tfidf1, target)
+    print 3
+    SGD4 = svm.LinearSVC(C=1.0, random_state = 42).fit(X_train_tfidf2, target)
+    print 4
+    SGD5 = svm.LinearSVC(C=0.5, random_state = 42).fit(X_train_counts1, target)
+    print 5
+    SGD6 = svm.LinearSVC(C=0.5, random_state = 42).fit(X_train_counts2, target)
+    print 6
+    SGD7 = svm.LinearSVC(C=0.5, random_state = 42).fit(X_train_tfidf1, target)
+    print 7
+    SGD8 = svm.LinearSVC(C=0.5, random_state = 42).fit(X_train_tfidf2, target)
+    print 8
 
     LG1prediction = []
     LG2prediction = []
@@ -371,7 +364,7 @@ for train, test in kf.split(user,clas):
     statistic8[1].append(res[1])
     statistic8[2].append(res[2])
 
-    out.write("Estadisticas de SVM1(alpha = 0.001, n_gram = (1, 1), tf-idf = False):\n")
+    out.write("Estadisticas de SVM1(C = 1.0, n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD1prediction,
             target_names=["Chavista","Opositor"])))
@@ -385,7 +378,7 @@ for train, test in kf.split(user,clas):
     statistic9[1].append(res[1])
     statistic9[2].append(res[2])
 
-    out.write("Estadisticas de SVM2(alpha = 0.001, n_gram = (1, 2), tf-idf = False):\n")
+    out.write("Estadisticas de SVM2(C = 1.0, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD2prediction,
             target_names=["Chavista","Opositor"])))
@@ -399,7 +392,7 @@ for train, test in kf.split(user,clas):
     statistic10[1].append(res[1])
     statistic10[2].append(res[2])
 
-    out.write("Estadisticas de SVM3(alpha = 0.001, n_gram = (1, 1), tf-idf = True):\n")
+    out.write("Estadisticas de SVM3(C = 1.0, n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD3prediction,
             target_names=["Chavista","Opositor"])))
@@ -413,7 +406,7 @@ for train, test in kf.split(user,clas):
     statistic11[1].append(res[1])
     statistic11[2].append(res[2])
 
-    out.write("Estadisticas de SVM4(alpha = 0.001, n_gram = (1, 2), tf-idf = True):\n")
+    out.write("Estadisticas de SVM4(C = 1.0, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD4prediction,
             target_names=["Chavista","Opositor"])))
@@ -427,7 +420,7 @@ for train, test in kf.split(user,clas):
     statistic12[1].append(res[1])
     statistic12[2].append(res[2])
 
-    out.write("Estadisticas de SVM5(alpha = 0.01, n_gram = (1, 1), tf-idf = False):\n")
+    out.write("Estadisticas de SVM5(C = 0.5, n_gram = (1, 1), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD5prediction,
             target_names=["Chavista","Opositor"])))
@@ -441,7 +434,7 @@ for train, test in kf.split(user,clas):
     statistic13[1].append(res[1])
     statistic13[2].append(res[2])
 
-    out.write("Estadisticas de SVM6(alpha = 0.01, n_gram = (1, 2), tf-idf = False):\n")
+    out.write("Estadisticas de SVM6(C = 0.5, n_gram = (1, 2), tf-idf = False):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD6prediction,
             target_names=["Chavista","Opositor"])))
@@ -455,7 +448,7 @@ for train, test in kf.split(user,clas):
     statistic14[1].append(res[1])
     statistic14[2].append(res[2])
 
-    out.write("Estadisticas de SVM7(alpha = 0.01, n_gram = (1, 1), tf-idf = True):\n")
+    out.write("Estadisticas de SVM7(C = 0.5, n_gram = (1, 1), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD7prediction,
             target_names=["Chavista","Opositor"])))
@@ -469,7 +462,7 @@ for train, test in kf.split(user,clas):
     statistic15[1].append(res[1])
     statistic15[2].append(res[2])
 
-    out.write("Estadisticas de SVM8(alpha = 0.01, n_gram = (1, 2), tf-idf = True):\n")
+    out.write("Estadisticas de SVM8(C = 0.5, n_gram = (1, 2), tf-idf = True):\n")
 
     out.write(str(metrics.classification_report(test_clasification, SGD8prediction,
             target_names=["Chavista","Opositor"])))
@@ -486,7 +479,7 @@ for train, test in kf.split(user,clas):
     out.close()
 
 
-out = open("resultados/Opos_chav/avg_kfold", 'w')
+out = open("resultados/Opos_chav/avg_kfold.txt", 'w')
 
 out.write("Promedio de LG1:\n")
 out.write("Precision: " + str(np.mean(statistic1[0])) + "\n")
